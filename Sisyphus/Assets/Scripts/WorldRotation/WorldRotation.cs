@@ -10,29 +10,25 @@ public class WorldRotation : MonoBehaviour
     private float yAngle;
     private float xAngle;
 
+    public GameObject PlayerLocation;
+
+
     void Update()
     {
         if (Input.GetKeyUp(KeyCode.Keypad6))
-            zDegree += 90f;
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0,0,1), 90);
         if (Input.GetKeyUp(KeyCode.Keypad4))
-            zDegree -= 90f;
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), -90);
 
         if (Input.GetKeyUp(KeyCode.Keypad8))
-            yDegree += 90f;
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), 90);
         if (Input.GetKeyUp(KeyCode.Keypad2))
-            yDegree -= 90f;
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), -90);
 
         if (Input.GetKeyUp(KeyCode.Keypad1))
-            xDegree += 90f;
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 1, 0), 90);
         if (Input.GetKeyUp(KeyCode.Keypad3))
-            xDegree -= 90f;
-
-
-        zAngle = Mathf.LerpAngle(transform.rotation.z, zDegree, Time.deltaTime * 10);
-        yAngle = Mathf.LerpAngle(transform.rotation.y, yDegree, Time.deltaTime * 10);
-        xAngle = Mathf.LerpAngle(transform.rotation.x, yDegree, Time.deltaTime * 10);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(xDegree, yDegree, zDegree), Time.deltaTime * 10);
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 1, 0), -90);
 
     }
 
