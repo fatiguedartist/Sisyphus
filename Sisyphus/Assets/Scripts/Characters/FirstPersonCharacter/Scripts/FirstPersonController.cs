@@ -10,6 +10,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        private static float DISTANCE_TO_PICKUP = 10.0f;
+        private GameObject SelectedObject;
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -81,6 +84,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if(Input.GetMouseButtonDown(0)) //left mouse click
+            {
+                SelectObject();
+            }
         }
 
 
@@ -254,6 +262,27 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 return;
             }
             body.AddForceAtPosition(m_CharacterController.velocity*0.1f, hit.point, ForceMode.Impulse);
+        }
+
+        private void SelectObject()
+        {
+            RaycastHit hit;
+            Vector3 fwd = transform.TransformDirection(Vector3.forward);
+            Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+
+            Debug.DrawLine(ray.origin,ray.direction);
+            if (Physics.Raycast(ray, out hit, DISTANCE_TO_PICKUP))
+            {
+                GameObject selected = hit.transform.gameObject; //get the object picked up by the raycast
+                Debug.Log(selected);
+                //If null, it means that the selected object cannot be picked up
+                if (selected.GetComponent<Selection>() != null) 
+                {
+                    SelectedObject = selected;
+                }
+
+
+            }
         }
     }
 }
