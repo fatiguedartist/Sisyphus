@@ -15,9 +15,9 @@ public class WorldRotation : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(PlayerLocation.transform.localRotation);
+        //Debug.Log(PlayerLocation.transform.localRotation);
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetMouseButtonDown(1))
             HandleBackRotation();
     }
 
