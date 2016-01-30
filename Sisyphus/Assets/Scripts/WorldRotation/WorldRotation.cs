@@ -11,6 +11,7 @@ public class WorldRotation : MonoBehaviour
     private float xAngle;
 
     public GameObject PlayerLocation;
+    public Camera FPSView;
 
 
     void Update()
@@ -19,6 +20,11 @@ public class WorldRotation : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
             HandleBackRotation();
+
+        RaycastHit hit;
+        var raycast = Physics.Raycast(FPSView.transform.position, FPSView.transform.forward, out hit);
+        Debug.Log(hit.normal);
+        Debug.DrawRay(FPSView.transform.position, FPSView.transform.forward * 50, Color.green);
     }
 
     private void HandleBackRotation()
