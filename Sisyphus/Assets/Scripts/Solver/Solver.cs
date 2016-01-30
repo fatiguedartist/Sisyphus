@@ -43,23 +43,36 @@ namespace Sisyphus
             var solutionPath = new List<Int3> {currentLocation};
 
             Sides currentSide = Sides.Bottom;
+            Directions lastDirection = Directions.None;
+
             for (var i = 0; i < minPathLength; i++)
             {
                 currentSide = room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z];
 
-                if (UnityEngine.Random.Range(0, 2) == 0)
+                if (lastDirection != Directions.None && UnityEngine.Random.Range(0, 2) == 0)
                 {
                     var side = currentSide;
-                    currentSide = possibleSides.Where(s =>
+                    var direction = lastDirection;
+
+                    var desirableSides = possibleSides
+                        .Where(s => (s & side) == 0 && s != Sides.None &&
+                                    (
+                                        s == Sides.Left && direction != Directions.Right
+                                        || s == Sides.Right && direction != Directions.Left
+                                        || s == Sides.Top && direction != Directions.Down
+                                        || s == Sides.Bottom && direction != Directions.Up
+                                        || s == Sides.Front && direction != Directions.Back
+                                        || s == Sides.Rear && direction != Directions.Forward
+                                        ));
+
+                    if (desirableSides.Any())
                     {
-                        return (s & side) == 0 && s != Sides.None;
-
-                    }).SelectRandom();
-
-                    room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z] |= currentSide;
+                        currentSide = desirableSides.SelectRandom();
+                        room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z] |= currentSide;
+                    }
                 }
 
-                intendedLocation = DetermineNextLocation(room, currentLocation, possibleDirections);
+                intendedLocation = DetermineNextLocation(room, currentLocation, possibleDirections, ref lastDirection);
 
                 room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] |= currentSide;
                 currentLocation = intendedLocation;
@@ -73,12 +86,42 @@ namespace Sisyphus
             }
         }
 
-        private static Int3 DetermineNextLocation(Room room, Int3 currentLocation, Directions[] possibleDirections)
+        private static Int3 DetermineNextLocation(Room room, Int3 currentLocation, Directions[] possibleDirections, ref Directions lastDirection)
         {
             Directions invalidDirections = Directions.None;
             var foundValidDirection = false;
             var intendedLocation = currentLocation;
             var currentSide = room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z];
+
+            if (lastDirection == Directions.Left)
+            {
+                invalidDirections |= Directions.Right;
+            }
+
+            if (lastDirection == Directions.Right)
+            {
+                invalidDirections |= Directions.Left;
+            }
+
+            if (lastDirection == Directions.Up)
+            {
+                invalidDirections |= Directions.Down;
+            }
+
+            if (lastDirection == Directions.Down)
+            {
+                invalidDirections |= Directions.Up;
+            }
+
+            if (lastDirection == Directions.Forward)
+            {
+                invalidDirections |= Directions.Back;
+            }
+
+            if (lastDirection == Directions.Back)
+            {
+                invalidDirections |= Directions.Forward;
+            }
 
             if ((currentSide & Sides.Left) > 0)
             {
@@ -120,26 +163,24 @@ namespace Sisyphus
                     throw new InvalidSolveException();
                 }
 
-                Directions direction;
-                do
-                {
-                    direction = possibleDirections.SelectRandom();
-                } while ((invalidDirections & direction) > 0);
+                lastDirection = possibleDirections.Where(d => (invalidDirections & d) == 0).SelectRandom();
+                if (lastDirection == Directions.None)
+                    throw new InvalidSolveException();
 
-                switch (direction)
+                switch (lastDirection)
                 {
                     case Directions.Forward:
                         intendedLocation.Z += 1;
                         if (intendedLocation.Z == room.Depth)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
@@ -152,14 +193,14 @@ namespace Sisyphus
                         intendedLocation.Z -= 1;
                         if (intendedLocation.Z < 0)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
@@ -172,14 +213,14 @@ namespace Sisyphus
                         intendedLocation.Y += 1;
                         if (intendedLocation.Y == room.Height)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
@@ -192,14 +233,14 @@ namespace Sisyphus
                         intendedLocation.Y -= 1;
                         if (intendedLocation.Y < 0)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
@@ -212,14 +253,14 @@ namespace Sisyphus
                         intendedLocation.X -= 1;
                         if (intendedLocation.X < 0)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
@@ -232,14 +273,14 @@ namespace Sisyphus
                         intendedLocation.X += 1;
                         if (intendedLocation.X == room.Width)
                         {
-                            invalidDirections |= direction;
+                            invalidDirections |= lastDirection;
                         }
                         else
                         {
                             if (room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] !=
                                 Sides.None)
                             {
-                                invalidDirections |= direction;
+                                invalidDirections |= lastDirection;
                             }
                             else
                             {
