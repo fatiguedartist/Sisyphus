@@ -35,7 +35,7 @@ namespace Sisyphus
             RenderSettings.skybox = skyboxes.SelectRandom();
             GameState.Instance.LevelChanged += GoToNextLevel;
 
-            InitFields();
+            InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
             GenGeometry();
             transform.localScale = scale * Vector3.one;
@@ -44,19 +44,22 @@ namespace Sisyphus
 
         private void GoToNextLevel(int level)
         {
+            Application.LoadLevel(0);
+            /*
             GameState.Instance.LevelChanged -= GoToNextLevel;
             var roomGen = generatorPrefab.transform.Instantiate();
             roomGen.transform.position = Vector3.zero;
             roomGen.transform.rotation = Quaternion.identity;
             roomGen.transform.localScale = Vector3.one;
+            */
             /*float angle;
             Vector3 axis;
             transform.rotation.ToAngleAxis(out angle, out axis);
             roomGen.transform.RotateAround(player.transform.position, axis, angle);*/
-            Destroy(gameObject);
+           // Destroy(gameObject);
         }
 
-        private void InitFields()
+        private void InitFields(int level)
         {
             _wireColor = Color.red;
             _pathColor = Color.magenta;
@@ -66,7 +69,7 @@ namespace Sisyphus
             //_pathColor.a = 0.75f;
             _wireColor.a = 0.25f;
 
-            _room = new Room(width, height, depth, 0);
+            _room = new Room(level, level, level, 0);
         }
 
         private void GenGeometry()
