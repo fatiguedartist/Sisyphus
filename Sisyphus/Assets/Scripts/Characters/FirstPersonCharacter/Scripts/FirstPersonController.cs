@@ -294,7 +294,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                         { 
                             ClickSuppressStart = Time.realtimeSinceStartup;
                             SelectedObject = selected;
-                            Debug.Log(SelectedObject);
+                            SomethingIsSelected = true;
 
                             //Make selected object kinematic (won't be affect by other forces)
                             Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
@@ -317,13 +317,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private bool IsObjectSelectable()
         {
+            if (SomethingIsSelected)
+            {
+                return false;
+            }
+
             if (ClickSuppressStart == 0)
             {
                 return true;
             }
-
-            Debug.Log("Time: " + Time.realtimeSinceStartup);
-            Debug.Log("Future: " + ClickSuppressStart + SELECTION_CLICK_DELAY);
 
             if (Time.realtimeSinceStartup < ClickSuppressStart + SELECTION_CLICK_DELAY)
             {
@@ -332,18 +334,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             else
             {
                 ClickSuppressStart = 0;
-                Debug.Log("Object is Selectable");
                 return true;
             }
         }
 
         private void DropObject()
         {
+            ClickSuppressStart = Time.realtimeSinceStartup;
             Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
             r.isKinematic = false;
             SelectedObject.transform.parent = null;
             MovingObject = false;
             SelectedObject = null;
+            SomethingIsSelected = false;
         }
     }
 }
