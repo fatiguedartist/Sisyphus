@@ -13787,6 +13787,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 832191026}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &835373747 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
+  m_PrefabInternal: {fileID: 292192129}
 --- !u!1 &836033553
 GameObject:
   m_ObjectHideFlags: 0
@@ -27240,6 +27245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLocation: {fileID: 232497026}
+  FPSView: {fileID: 835373747}
 --- !u!4 &1554932589
 Transform:
   m_ObjectHideFlags: 0
