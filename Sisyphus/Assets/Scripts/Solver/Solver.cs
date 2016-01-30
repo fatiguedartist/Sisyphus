@@ -25,11 +25,10 @@ namespace Sisyphus
         private static void Walk(Room room)
         {
             var entryPoint = room.entryPoint;
-            Sides currentSide = Sides.Bottom;
             room.roomBuffer.Assign(x => Sides.None);
-            room.roomBuffer[entryPoint.X, entryPoint.Y, entryPoint.Z] = currentSide;
+            room.roomBuffer[entryPoint.X, entryPoint.Y, entryPoint.Z] = Sides.Bottom;
 
-            const double MinDimensionalTraversal = 0.5;
+            const double MinDimensionalTraversal = 0.7;
             var minPathLength =
                 (int)
                     (room.Width*MinDimensionalTraversal*room.Height*MinDimensionalTraversal*room.Depth*
@@ -42,8 +41,8 @@ namespace Sisyphus
             var possibleDirections = Enum.GetValues(typeof (Directions)).Cast<Directions>().Where(d => d != Directions.None && d != Directions.NUM_VALUES).ToArray();
 
             var solutionPath = new List<Int3> {currentLocation};
-            room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z] |= currentSide;
 
+            Sides currentSide = Sides.Bottom;
             for (var i = 0; i < minPathLength; i++)
             {
                 currentSide = room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z];
@@ -51,15 +50,9 @@ namespace Sisyphus
                 if (UnityEngine.Random.Range(0, 2) == 0)
                 {
                     var side = currentSide;
-                    currentSide |= possibleSides.Where(s =>
+                    currentSide = possibleSides.Where(s =>
                     {
-                        return (s & side) == 0 &&
-                               (s == Sides.Left && (side & Sides.Right) == 0
-                                || s == Sides.Right && (side & Sides.Left) == 0
-                                || s == Sides.Top && (side & Sides.Bottom) == 0
-                                || s == Sides.Bottom && (side & Sides.Top) == 0
-                                || s == Sides.Front && (side & Sides.Rear) == 0
-                                || s == Sides.Rear && (side & Sides.Front) == 0);
+                        return (s & side) == 0 && s != Sides.None;
 
                     }).SelectRandom();
 
