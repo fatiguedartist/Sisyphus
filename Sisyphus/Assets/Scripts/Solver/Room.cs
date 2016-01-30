@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,10 +11,11 @@ namespace Sisyphus
         public int Height { get; private set; }
         public int Depth { get; private set; }
         public int NumKeyLockPairs { get; private set; }
-        public bool[,,] roomBuffer;
+        public Sides[,,] roomBuffer;
         public Int3 entryPoint;
         public Int3[] keys;
         public Int3[] locks;
+        public List<Int3> solutionPath;
         public Int3 door;
 
         const int MinDistBetweenTargets = 2;
@@ -27,7 +29,7 @@ namespace Sisyphus
             Depth = depth;
             NumKeyLockPairs = numKeyLockPairs;
 
-            roomBuffer = new bool[width, height, depth];
+            roomBuffer = new Sides[width, height, depth];
             keys = new Int3[numKeyLockPairs];
             locks = new Int3[numKeyLockPairs];
 

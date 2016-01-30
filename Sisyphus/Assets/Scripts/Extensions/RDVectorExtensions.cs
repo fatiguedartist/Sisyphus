@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sisyphus;
+using UnityEngine;
 
 public static class RDVectorExtensions
 {
@@ -9,6 +10,11 @@ public static class RDVectorExtensions
     static float t;
     static Vector3 vVector3;
     static Vector3 vClosestPoint;
+
+    public static Int3 ToIntVector(this Vector3 vec)
+    {
+        return new Int3((int)vec.x, (int)vec.y, (int)vec.z);
+    }
 
     public static void SetX(this Transform transform, float x, Space space = Space.Self)
     {
