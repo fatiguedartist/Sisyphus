@@ -3,13 +3,6 @@ using System.Collections;
 
 public class WorldRotation : MonoBehaviour
 {
-    private float zDegree;
-    private float yDegree;
-    private float xDegree;
-    private float zAngle;
-    private float yAngle;
-    private float xAngle;
-
     public GameObject PlayerLocation;
     public Camera FPSView;
 
@@ -34,21 +27,42 @@ public class WorldRotation : MonoBehaviour
 
         if (PlayerLocation.transform.eulerAngles.y > 315 || PlayerLocation.transform.eulerAngles.y < 45) // NORTH
         {
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), targetAngle); 
+            RequestRotate(new Vector3(1, 0, 0), targetAngle);
         }
         else if (PlayerLocation.transform.eulerAngles.y > 45 && PlayerLocation.transform.eulerAngles.y < 135) // EAST 
         {
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), -targetAngle);
+            RequestRotate(new Vector3(0, 0, 1), -targetAngle);
         }
         else if (PlayerLocation.transform.eulerAngles.y > 135 && PlayerLocation.transform.eulerAngles.y < 225) // SOUTH
         {
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), -targetAngle);
+            RequestRotate(new Vector3(1, 0, 0), -targetAngle);
         }
         else if (PlayerLocation.transform.eulerAngles.y > 225 && PlayerLocation.transform.eulerAngles.y < 315) // WEST
         {
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), targetAngle);
+            RequestRotate(new Vector3(0, 0, 1), targetAngle);
         }
 
+    }
+
+    private void RequestRotate(Vector3 axis, int targetAngle)
+    {
+        StartCoroutine(rotate(axis, targetAngle));
+        //transform.RotateAround(PlayerLocation.transform.position, axis, targetAngle);
+    }
+
+    private IEnumerator rotate(Vector3 axis, int targetAngle)
+    {
+        float currentAngle = 0;
+        var recordedPosition = new Vector3(PlayerLocation.transform.position.x, PlayerLocation.transform.position.y, PlayerLocation.transform.position.z);
+
+        float Multiplier = 300f;
+        while (Mathf.Abs(currentAngle) <= Mathf.Abs(targetAngle))
+        {
+            transform.RotateAround(recordedPosition, axis, Time.deltaTime * Multiplier);
+            currentAngle += Time.deltaTime * Multiplier;
+            Multiplier = Mathf.Lerp(Multiplier, 1, Time.deltaTime * 3);
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     void OnGUI()
