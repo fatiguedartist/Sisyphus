@@ -136,6 +136,18 @@ Prefab:
       propertyPath: FPSView
       value: 
       objectReference: {fileID: 1280034020}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: depth
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: height
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: width
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0

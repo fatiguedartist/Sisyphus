@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sisyphus
 {
@@ -18,6 +19,15 @@ namespace Sisyphus
         public float scale = 1;
 
         public GameObject player;
+
+        public List<GameObject> leftSideWalls; 
+        public List<GameObject> rightSideWalls;
+        public List<GameObject> topSideWalls;
+        public List<GameObject> bottomSideWalls;
+        public List<GameObject> frontSideWalls;
+        public List<GameObject> backSideWalls;
+        public List<GameObject> centerPieces;
+        public List<GameObject> acidPieces;
 
         private void Start()
         {
@@ -152,12 +162,10 @@ namespace Sisyphus
 
                 if (side == Sides.None)
                 {
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    var geo = acidPieces.SelectRandom().Instantiate();
                     geo.transform.parent = transform;
                     geo.transform.localPosition = basePos;
                     geo.transform.localScale = baseSize;
-                    geo.GetComponent<MeshRenderer>().material.color = Color.yellow;
-                    geo.AddComponent<DeadlySurface>();
                 }
             }
         }
