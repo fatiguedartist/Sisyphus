@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.5
+  m_AmbientIntensity: 0
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -132,123 +132,29 @@ Prefab:
       propertyPath: PlayerLocation
       value: 
       objectReference: {fileID: 590160715}
-    - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.r
-      value: 0.8308824
+    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.g
-      value: 0.6048335
-      objectReference: {fileID: 0}
-    - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.b
-      value: 0.7498166
+      propertyPath: m_Intensity
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.r
-      value: 0.58428854
+      propertyPath: m_Intensity
+      value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.g
-      value: 0.71135974
-      objectReference: {fileID: 0}
-    - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.b
-      value: 0.78676474
-      objectReference: {fileID: 0}
-    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.r
-      value: 0.58520764
-      objectReference: {fileID: 0}
-    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.g
-      value: 0.8088235
-      objectReference: {fileID: 0}
-    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Color.b
-      value: 0.5293036
+    - target: {fileID: 10884344, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &199437497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 187424, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 199437498}
-  - 108: {fileID: 199437500}
-  - 123: {fileID: 199437499}
-  m_Layer: 0
-  m_Name: Directional light (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &199437498
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 444536, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 199437497}
-  m_LocalRotation: {x: 0.40821794, y: -0.23456973, z: 0.109381676, w: 0.87542605}
-  m_LocalPosition: {x: -2.000689, y: 4.2363944, z: -3.788803}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1579462593}
-  m_RootOrder: 4
---- !u!123 &199437499
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 199437497}
-  m_Enabled: 1
-  m_Flare: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
---- !u!108 &199437500
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 199437497}
-  m_Enabled: 1
-  serializedVersion: 6
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
-  m_Range: 10
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 8
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
-  m_AreaSize: {x: 1, y: 1}
 --- !u!1001 &291260221
 Prefab:
   m_ObjectHideFlags: 0
@@ -286,78 +192,36 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_IsActive
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_JumpSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_MouseLook.smooth
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_MouseLook.smoothTime
+      value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_WalkSpeed
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0
+    - target: {fileID: 11400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_RunSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &499909488 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 187424, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-  m_PrefabInternal: {fileID: 30853187}
---- !u!123 &499909489
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 499909488}
-  m_Enabled: 1
-  m_Flare: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!1 &590160715 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_PrefabInternal: {fileID: 291260221}
---- !u!1 &1280034014 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-  m_PrefabInternal: {fileID: 291260221}
---- !u!114 &1280034018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1280034014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b5ec6153a1d55438228df10fe66844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distanceFog: 1
-  excludeFarPixels: 1
-  useRadialDistance: 1
-  heightFog: 0
-  height: 1
-  heightDensity: 2
-  startDistance: 0
-  fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
---- !u!4 &1579462593 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 467012, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-  m_PrefabInternal: {fileID: 30853187}

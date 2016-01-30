@@ -12,6 +12,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
         private static float DISTANCE_TO_PICKUP = 1.0f;
+        private float SELECTION_CLICK_DELAY = 1.0f;
+        private float ClickSuppressStart;
+        private bool SomethingIsSelected = false;
+
         private GameObject SelectedObject;
         private bool MovingObject = false;
 
@@ -291,22 +295,69 @@ namespace UnityStandardAssets.Characters.FirstPerson
             if (Physics.Raycast(ray, out hit, DISTANCE_TO_PICKUP))
             {
                 GameObject selected = hit.transform.gameObject; //get the object picked up by the raycast
-                Debug.Log(selected);
+
                 //If null, it means that the selected object cannot be picked up
                 if (selected.GetComponent<Selection>() != null) 
                 {
-                    SelectedObject = selected;
-                    SelectedObject.transform.parent = gameObject.transform;
-                    MovingObject = true;
+                    if (IsObjectSelectable())
+                    {
+                        if (SelectedObject == null || selected.GetInstanceID() != SelectedObject.GetInstanceID())
+                        { 
+                            ClickSuppressStart = Time.realtimeSinceStartup;
+                            SelectedObject = selected;
+                            SomethingIsSelected = true;
+
+                            //Make selected object kinematic (won't be affect by other forces)
+                            Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
+                            r.isKinematic = true; 
+
+                            //Raise the object slightly
+                            Vector3 currentPosition = SelectedObject.transform.position;
+                            SelectedObject.transform.position = new Vector3 (currentPosition.x, (currentPosition.y + 0.5f ),currentPosition.z);
+
+                            //Make the object a child of the Player, this will enforces object position is relative to players rotation
+                            SelectedObject.transform.parent = gameObject.transform;
+                            MovingObject = true;
+                        }
+                    }
+
                 }
+
+            }
+        }
+
+        private bool IsObjectSelectable()
+        {
+            if (SomethingIsSelected)
+            {
+                return false;
+            }
+
+            if (ClickSuppressStart == 0)
+            {
+                return true;
+            }
+
+            if (Time.realtimeSinceStartup < ClickSuppressStart + SELECTION_CLICK_DELAY)
+            {
+                return false;
+            }
+            else
+            {
+                ClickSuppressStart = 0;
+                return true;
             }
         }
 
         private void DropObject()
         {
+            ClickSuppressStart = Time.realtimeSinceStartup;
+            Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
+            r.isKinematic = false;
             SelectedObject.transform.parent = null;
             MovingObject = false;
             SelectedObject = null;
+            SomethingIsSelected = false;
         }
     }
 }
