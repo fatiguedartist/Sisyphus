@@ -95,15 +95,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 SelectObject();
             }
-
-            if (MovingObject)
-            {
-                MoveObject();
-            }
-
-
-
-
         }
 
 
