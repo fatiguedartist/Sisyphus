@@ -78,10 +78,28 @@ public class WorldRotation : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        ClampRotation(axis, targetAngle, currentAngle, recordedPosition);
+
         var rigidBody = FPSView.transform.parent.GetComponent<Rigidbody>();
         rigidBody.useGravity = true;
 
         transitioning = false;
+    }
+
+    private void ClampRotation(Vector3 axis, int targetAngle, float currentAngle, Vector3 recordedPosition)
+    {
+        float rotateDiff = (Mathf.Abs(currentAngle) - Mathf.Abs(targetAngle));
+        if (rotateDiff > 0)
+        {
+            if (targetAngle < 0)
+            {
+                transform.RotateAround(recordedPosition, axis, -rotateDiff);
+            }
+            else
+            {
+                transform.RotateAround(recordedPosition, axis, rotateDiff);
+            }
+        }
     }
 
     void OnGUI()
