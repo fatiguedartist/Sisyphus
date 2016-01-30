@@ -15,29 +15,38 @@ public class WorldRotation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Keypad6))
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0,0,1), 90);
-        if (Input.GetKeyUp(KeyCode.Keypad4))
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), -90);
+        Debug.Log(PlayerLocation.transform.localRotation);
 
-        if (Input.GetKeyUp(KeyCode.Keypad8))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+            HandleBackRotation();
+    }
+
+    private void HandleBackRotation()
+    {
+        if (PlayerLocation.transform.eulerAngles.y > 315 || PlayerLocation.transform.eulerAngles.y < 45)
+        {
             transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), 90);
-        if (Input.GetKeyUp(KeyCode.Keypad2))
+        }
+        else if (PlayerLocation.transform.eulerAngles.y > 45 && PlayerLocation.transform.eulerAngles.y < 135)
+        {
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), -90);
+        }
+        else if (PlayerLocation.transform.eulerAngles.y > 135 && PlayerLocation.transform.eulerAngles.y < 225)
+        {
             transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), -90);
-
-        if (Input.GetKeyUp(KeyCode.Keypad1))
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 1, 0), 90);
-        if (Input.GetKeyUp(KeyCode.Keypad3))
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 1, 0), -90);
+        }
+        else if (PlayerLocation.transform.eulerAngles.y > 225 && PlayerLocation.transform.eulerAngles.y < 315)
+        {
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(0, 0, 1), 90);
+        }
 
     }
 
     void OnGUI()
     {
-        GUI.Label(new Rect(0, 0, 100, 100), "zDegree" + zDegree.ToString());
-        GUI.Label(new Rect(0, 50, 100, 100), "yDegree" + yDegree.ToString());
-        GUI.Label(new Rect(0, 100, 100, 100), "zAngle" + zAngle.ToString());
-        GUI.Label(new Rect(0, 150, 100, 100), "yAngle" + yAngle.ToString());
+        GUI.Label(new Rect(0, 0, 300, 100), "PlayerLocation.transform.localRotation: " + PlayerLocation.transform.localRotation);
+        GUI.Label(new Rect(0, 50, 300, 100), "PlayerLocation.transform.rotation: " + PlayerLocation.transform.rotation);
+        GUI.Label(new Rect(0, 100, 300, 100), "PlayerLocation.transform.eulerAngles: " + PlayerLocation.transform.eulerAngles);
     }
 
 }
