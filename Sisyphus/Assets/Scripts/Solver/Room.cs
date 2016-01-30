@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -18,8 +19,6 @@ namespace Sisyphus
         public List<Int3> solutionPath;
         public Int3 door;
 
-        const int MinDistBetweenTargets = 2;
-
         private int iter = 0;
 
         public Room(int width, int height, int depth, int numKeyLockPairs)
@@ -34,7 +33,6 @@ namespace Sisyphus
             locks = new Int3[numKeyLockPairs];
 
             DefineEntryPoint(width, height);
-            DefineDoor(width, height, depth);
         }
 
         private void DefineEntryPoint(int width, int height)
@@ -44,12 +42,35 @@ namespace Sisyphus
             entryPoint = new Int3(entryLateralPoint, entryVerticalPoint, 0);
         }
 
-        private void DefineDoor(int width, int height, int depth)
+        public void CopyInto(Room room)
         {
-            var lateralPoint = Random.Range(0, width);
-            var verticalPoint = Random.Range(0, height);
-            var depthPoint = Random.Range(MinDistBetweenTargets, depth);
-            door = new Int3(lateralPoint, verticalPoint, depthPoint);
+            for (var x = 0; x < Width; x++)
+            {
+                for (var y = 0; y < Height; y++)
+                {
+                    for (var z = 0; z < Depth; z++)
+                    {
+                        room.roomBuffer[x, y, z] = roomBuffer[x, y, z];
+                    }
+                }
+            }
+
+            for (var i = 0; i < NumKeyLockPairs; i++)
+            {
+                room.keys[i] = keys[i];
+                room.locks[i] = locks[i];
+            }
+
+            room.entryPoint = entryPoint;
+            room.door = door;
+            room.solutionPath = new List<Int3>(solutionPath);
+        }
+
+        public Room Clone()
+        {
+            var clone = new Room(Width, Height, Depth, NumKeyLockPairs);
+            CopyInto(clone);
+            return clone;
         }
     }
 }

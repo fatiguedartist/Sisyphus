@@ -12,8 +12,8 @@ namespace Sisyphus
         private Color _wireColor;
         public int depth = 15;
         public int height = 15;
-        public float scale = 1;
         public int width = 15;
+        public float scale = 1;
 
         private void Start()
         {
@@ -40,14 +40,13 @@ namespace Sisyphus
             Vector3 baseSize;
             Vector3 basePos;
 
-            int itemIndex = -1;
-            foreach (var int3 in _room.solutionPath)
+            for (var x = 0; x < _room.Width; x++)
+            for (var y = 0; y < _room.Height; y++)
+            for (var z = 0; z < _room.Depth; z++)
             {
-                itemIndex++;
-
-                var side = _room.roomBuffer[int3.X, int3.Y, int3.Z];
+                var side = _room.roomBuffer[x, y, z];
                 baseSize = Vector3.one*scale;
-                basePos = new Vector3(int3.X, int3.Y, int3.Z) *scale;
+                basePos = new Vector3(x, y, z) *scale;
 
                 var posIntVector = basePos.ToIntVector();
                 if (posIntVector.Equals(_room.entryPoint))
@@ -65,10 +64,6 @@ namespace Sisyphus
                     geo.GetComponent<MeshRenderer>().material.color = Color.green;
                 }
 
-                var color = Color.white;
-                color.b = itemIndex / (float)_room.solutionPath.Count;
-                color.g = itemIndex / (float)_room.solutionPath.Count * 2;
-
                 if ((side & Sides.Top) > 0)
                 {
                     var pos = basePos + Vector3.up*0.5f;
@@ -76,7 +71,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if ((side & Sides.Bottom) > 0)
@@ -86,7 +80,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if ((side & Sides.Left) > 0)
@@ -96,7 +89,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if ((side & Sides.Right) > 0)
@@ -106,7 +98,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if ((side & Sides.Front) > 0)
@@ -116,7 +107,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if ((side & Sides.Rear) > 0)
@@ -126,7 +116,6 @@ namespace Sisyphus
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.position = pos;
                     geo.transform.localScale = size;
-                    geo.GetComponent<MeshRenderer>().material.color = color;
                 }
 
                 if (side == Sides.None)
