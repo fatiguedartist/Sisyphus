@@ -4,6 +4,8 @@ namespace Sisyphus
 {
     public class TestRoomGenerator : MonoBehaviour
     {
+        public TestRoomGenerator generatorPrefab;
+
         private Color _endColor;
         private Color _pathColor;
 
@@ -19,11 +21,27 @@ namespace Sisyphus
 
         private void Start()
         {
+            GameState.Instance.LevelChanged += GoToNextLevel;
+
             InitFields();
             Solver.GenerateSolutionPath(_room);
             GenGeometry();
             transform.localScale = scale * Vector3.one;
-            player.transform.position = transform.position + _room.entryPoint.ToV3() * scale;
+            player.transform.position = _room.entryPoint.ToV3() * scale;
+        }
+
+        private void GoToNextLevel(int level)
+        {
+            GameState.Instance.LevelChanged -= GoToNextLevel;
+            var roomGen = generatorPrefab.transform.Instantiate();
+            roomGen.transform.position = Vector3.zero;
+            roomGen.transform.rotation = Quaternion.identity;
+            roomGen.transform.localScale = Vector3.one;
+            /*float angle;
+            Vector3 axis;
+            transform.rotation.ToAngleAxis(out angle, out axis);
+            roomGen.transform.RotateAround(player.transform.position, axis, angle);*/
+            Destroy(gameObject);
         }
 
         private void InitFields()
@@ -69,7 +87,7 @@ namespace Sisyphus
                     geo.transform.localPosition = basePos;
                     geo.transform.localScale = baseSize*0.5f;
                     geo.GetComponent<MeshRenderer>().material.color = Color.green;
-                    Destroy(geo.GetComponent<Collider>());
+                    geo.AddComponent<LevelCompleteSurface>();
                 }
 
                 if ((side & Sides.Top) > 0)
@@ -139,6 +157,7 @@ namespace Sisyphus
                     geo.transform.localPosition = basePos;
                     geo.transform.localScale = baseSize;
                     geo.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    geo.AddComponent<DeadlySurface>();
                 }
             }
         }
@@ -147,9 +166,6 @@ namespace Sisyphus
         {
             if (_room == null)
                 return;
-
-            Vector3 size;
-            Vector3 pos;
 
             Gizmos.color = Color.magenta;
 
@@ -165,7 +181,8 @@ namespace Sisyphus
                 }
             }
             /*
-
+            Vector3 size;
+            Vector3 pos;
 for (var x = 0; x < width; x++)
 {
     for (var y = 0; y < height; y++)

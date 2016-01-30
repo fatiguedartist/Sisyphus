@@ -13,6 +13,26 @@ public class EventArgs<T> : EventArgs
 
 public static class EventExtensions
 {
+    public static void Raise(this Action handler)
+    {
+        var test = handler;
+        if (test == null)
+        {
+            return;
+        }
+        test.Invoke();
+    }
+
+    public static void Raise<T>(this Action<T> handler, T val0)
+    {
+        var test = handler;
+        if (test == null)
+        {
+            return;
+        }
+        test.Invoke(val0);
+    }
+
     public static void Raise(this EventHandler handler, object sender, EventArgs e = null)
     {
         var test = handler;

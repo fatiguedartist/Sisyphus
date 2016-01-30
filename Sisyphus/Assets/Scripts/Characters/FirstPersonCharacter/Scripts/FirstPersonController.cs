@@ -1,4 +1,5 @@
 using System;
+using Sisyphus;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
@@ -256,6 +257,16 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
+            if (hit.gameObject.GetComponent<DeadlySurface>())
+            {
+                GameState.KillPlayer();
+            }
+
+            if (hit.gameObject.GetComponent<LevelCompleteSurface>())
+            {
+                GameState.IncreaseLevel();
+            }
+
             Rigidbody body = hit.collider.attachedRigidbody;
             //dont move the rigidbody if the character is on top of it
             if (m_CollisionFlags == CollisionFlags.Below)
