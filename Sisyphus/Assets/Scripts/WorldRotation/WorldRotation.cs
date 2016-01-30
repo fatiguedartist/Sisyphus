@@ -32,9 +32,9 @@ public class WorldRotation : MonoBehaviour
             targetAngle = 180;
         }
 
-        if (PlayerLocation.transform.eulerAngles.y > 315 || PlayerLocation.transform.eulerAngles.y < 45)
+        if (PlayerLocation.transform.eulerAngles.y > 315 || PlayerLocation.transform.eulerAngles.y < 45) // NORTH
         {
-            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), targetAngle); // NORTH
+            transform.RotateAround(PlayerLocation.transform.position, new Vector3(1, 0, 0), targetAngle); 
         }
         else if (PlayerLocation.transform.eulerAngles.y > 45 && PlayerLocation.transform.eulerAngles.y < 135) // EAST 
         {
