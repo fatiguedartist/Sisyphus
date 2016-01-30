@@ -10,8 +10,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
-        private static float DISTANCE_TO_PICKUP = 10.0f;
+        private static float DISTANCE_TO_PICKUP = 1.0f;
         private GameObject SelectedObject;
+        private bool MovingObject = false;
 
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
@@ -85,10 +86,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
-            if(Input.GetMouseButtonDown(0)) //left mouse click
+            if (Input.GetMouseButtonDown(0) && MovingObject)
+            {
+                DropObject();
+            }
+
+            if (Input.GetMouseButtonDown(0) && !MovingObject) //left mouse click
             {
                 SelectObject();
             }
+
+            if (MovingObject)
+            {
+                MoveObject();
+            }
+
+
+
+
         }
 
 
@@ -279,10 +294,17 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 if (selected.GetComponent<Selection>() != null) 
                 {
                     SelectedObject = selected;
+                    SelectedObject.transform.parent = gameObject.transform;
+                    MovingObject = true;
                 }
-
-
             }
+        }
+
+        private void DropObject()
+        {
+            SelectedObject.transform.parent = null;
+            MovingObject = false;
+            SelectedObject = null;
         }
     }
 }
