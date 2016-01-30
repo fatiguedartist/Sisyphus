@@ -92,6 +92,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: skyboxes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 467012, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -148,6 +152,18 @@ Prefab:
       propertyPath: width
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: skyboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 966766f4829d6ad419eaaf7cf0712f85, type: 2}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: skyboxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e980bc7fbb00dc34b86b95ac842d1920, type: 2}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: skyboxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
