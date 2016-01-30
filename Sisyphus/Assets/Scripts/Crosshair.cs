@@ -6,6 +6,10 @@ public class Crosshair : MonoBehaviour {
     public Texture2D crosshairTexture;
     public float crosshairScale = 1;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked; //lock the cursor to the center of the screen (i hope)
+    }
 
     void OnGUI()
     {
