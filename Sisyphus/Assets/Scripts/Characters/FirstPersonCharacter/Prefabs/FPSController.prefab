@@ -45,7 +45,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4416738, y: 16.6, z: -1.5368724}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -111,7 +111,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -239,9 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 5
-  m_RunSpeed: 10
+  m_RunSpeed: 7
   m_RunstepLenghten: 0.7
-  m_JumpSpeed: 10
+  m_JumpSpeed: 6
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook:
@@ -250,8 +250,8 @@ MonoBehaviour:
     clampVerticalRotation: 1
     MinimumX: -90
     MaximumX: 90
-    smooth: 0
-    smoothTime: 5
+    smooth: 1
+    smoothTime: 20
     lockCursor: 1
   m_UseFovKick: 1
   m_FovKick:

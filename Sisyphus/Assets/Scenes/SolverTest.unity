@@ -132,26 +132,10 @@ Prefab:
       propertyPath: PlayerLocation
       value: 
       objectReference: {fileID: 590160715}
-    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10884344, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.1
-      objectReference: {fileID: 0}
+    - target: {fileID: 11471490, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: FPSView
+      value: 
+      objectReference: {fileID: 1280034020}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
@@ -164,15 +148,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.4416738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 16.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.5368724
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -218,10 +202,19 @@ Prefab:
       propertyPath: m_RunSpeed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &590160715 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 291260221}
+--- !u!20 &1280034020 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0,
+    type: 2}
   m_PrefabInternal: {fileID: 291260221}

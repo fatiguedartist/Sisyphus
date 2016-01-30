@@ -215,7 +215,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.8308824, g: 0.6048335, b: 0.7498166, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -248,7 +248,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.58428854, g: 0.71135974, b: 0.78676474, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -281,7 +281,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -314,7 +314,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.85294116, g: 0.84031147, b: 0.39511245, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -380,7 +380,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 0.58520764, g: 0.8088235, b: 0.5293036, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLocation: {fileID: 0}
+  FPSView: {fileID: 0}
 --- !u!114 &11496794
 MonoBehaviour:
   m_ObjectHideFlags: 1

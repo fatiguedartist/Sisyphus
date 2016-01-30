@@ -1,61 +1,75 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class WorldRotation : MonoBehaviour
 {
     public GameObject PlayerLocation;
     public Camera FPSView;
 
+    private bool transitioning = false;
 
     void Update()
     {
         //Debug.Log(PlayerLocation.transform.localRotation);
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !transitioning)
             HandleBackRotation();
 
         Debug.DrawRay(FPSView.transform.position, FPSView.transform.forward * 50, Color.green);
     }
 
+    Vector3 Snap(Vector3 v3)
+    {
+        var possibleVectors = new List<Vector3>
+        {
+            Vector3.left,
+            Vector3.right,
+            Vector3.up,
+            Vector3.down,
+            Vector3.forward,
+            Vector3.back,
+        };
+
+        var bestOption = possibleVectors.OrderBy(v => Quaternion.Angle(Quaternion.Euler(v), Quaternion.Euler(v3))).First();
+
+        return bestOption;
+    }
+
     private void HandleBackRotation()
     {
         int targetAngle = 90;
-        if (FPSView.transform.eulerAngles.x >= 270 && FPSView.transform.eulerAngles.x <= 315)
+        var localEuler = FPSView.transform.localEulerAngles.x;
+        if (localEuler > 180)
+            localEuler -= 360;
+
+        if (localEuler > 45 || localEuler < -45)
         {
             targetAngle = 180;
         }
 
-        if (PlayerLocation.transform.eulerAngles.y > 315 || PlayerLocation.transform.eulerAngles.y < 45) // NORTH
-        {
-            RequestRotate(new Vector3(1, 0, 0), targetAngle);
-        }
-        else if (PlayerLocation.transform.eulerAngles.y > 45 && PlayerLocation.transform.eulerAngles.y < 135) // EAST 
-        {
-            RequestRotate(new Vector3(0, 0, 1), -targetAngle);
-        }
-        else if (PlayerLocation.transform.eulerAngles.y > 135 && PlayerLocation.transform.eulerAngles.y < 225) // SOUTH
-        {
-            RequestRotate(new Vector3(1, 0, 0), -targetAngle);
-        }
-        else if (PlayerLocation.transform.eulerAngles.y > 225 && PlayerLocation.transform.eulerAngles.y < 315) // WEST
-        {
-            RequestRotate(new Vector3(0, 0, 1), targetAngle);
-        }
-
+        var axis = PlayerLocation.transform.right;
+        axis = Snap(axis);
+        RequestRotate(axis, -targetAngle);
     }
 
     private void RequestRotate(Vector3 axis, int targetAngle)
     {
+        transitioning = true;
+        var rigidBody = FPSView.transform.parent.GetComponent<Rigidbody>();
+        rigidBody.useGravity = false;
         StartCoroutine(rotate(axis, targetAngle));
-        //transform.RotateAround(PlayerLocation.transform.position, axis, targetAngle);
     }
 
     private IEnumerator rotate(Vector3 axis, int targetAngle)
     {
         float currentAngle = 0;
-        var recordedPosition = new Vector3(PlayerLocation.transform.position.x, PlayerLocation.transform.position.y, PlayerLocation.transform.position.z);
+        var recordedPosition = PlayerLocation.transform.position;
 
-        float Multiplier = 300f;
+        float Multiplier = 300f * -targetAngle / 90f;
         while (Mathf.Abs(currentAngle) <= Mathf.Abs(targetAngle))
         {
             transform.RotateAround(recordedPosition, axis, Time.deltaTime * Multiplier);
@@ -63,6 +77,11 @@ public class WorldRotation : MonoBehaviour
             Multiplier = Mathf.Lerp(Multiplier, 1, Time.deltaTime * 3);
             yield return new WaitForEndOfFrame();
         }
+
+        var rigidBody = FPSView.transform.parent.GetComponent<Rigidbody>();
+        rigidBody.useGravity = true;
+
+        transitioning = false;
     }
 
     void OnGUI()
