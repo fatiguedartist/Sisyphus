@@ -120,6 +120,10 @@ namespace Sisyphus
 
                 if (side == Sides.None)
                 {
+                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    geo.transform.position = basePos;
+                    geo.transform.localScale = baseSize;
+                    geo.GetComponent<MeshRenderer>().material.color = Color.yellow;
                 }
             }
         }
@@ -221,12 +225,12 @@ namespace Sisyphus
                                 Gizmos.color = _pathColor;
                                 Gizmos.DrawCube(pos, size);
                             }
-                            */
                         if (side == Sides.None)
                         {
                             Gizmos.color = _wireColor;
                             Gizmos.DrawWireCube(pos, size);
                         }
+                        */
                     }
                 }
             }
