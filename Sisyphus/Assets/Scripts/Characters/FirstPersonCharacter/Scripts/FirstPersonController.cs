@@ -11,6 +11,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     public class FirstPersonController : MonoBehaviour
     {
         private static float DISTANCE_TO_PICKUP = 1.0f;
+        private float SELECTION_CLICK_DELAY = 1.75f;
+        private float ClickSuppressStart;
+
         private GameObject SelectedObject;
         private bool MovingObject = false;
 
@@ -284,15 +287,53 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 //If null, it means that the selected object cannot be picked up
                 if (selected.GetComponent<Selection>() != null) 
                 {
-                    SelectedObject = selected;
-                    SelectedObject.transform.parent = gameObject.transform;
-                    MovingObject = true;
+                    if(IsObjectSelectable())
+                    {
+                        ClickSuppressStart = Time.realtimeSinceStartup;
+                        SelectedObject = selected;
+
+                        //Make selected object kinematic (won't be affect by other forces)
+                        Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
+                        r.isKinematic = true; 
+
+                        //Raise the object slightly
+                        Vector3 currentPosition = SelectedObject.transform.position;
+                        SelectedObject.transform.position = new Vector3 (currentPosition.x, (currentPosition.y + 0.5f ),currentPosition.z);
+
+                        //Make the object a child of the Player, this will enforces object position is relative to players rotation
+                        SelectedObject.transform.parent = gameObject.transform;
+                        MovingObject = true;
+                    }
                 }
+            }
+        }
+
+        private bool IsObjectSelectable()
+        {
+            if (ClickSuppressStart == 0)
+            {
+                return true;
+            }
+
+            Debug.Log("Time: " + Time.realtimeSinceStartup);
+            Debug.Log("Future: " + ClickSuppressStart + SELECTION_CLICK_DELAY);
+
+            if (Time.realtimeSinceStartup < ClickSuppressStart + SELECTION_CLICK_DELAY)
+            {
+                return false;
+            }
+            else
+            {
+                ClickSuppressStart = 0;
+                Debug.Log("Object is Selectable");
+                return true;
             }
         }
 
         private void DropObject()
         {
+            Rigidbody r = SelectedObject.GetComponent<Rigidbody>();
+            r.isKinematic = false;
             SelectedObject.transform.parent = null;
             MovingObject = false;
             SelectedObject = null;
