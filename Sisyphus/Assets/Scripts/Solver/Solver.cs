@@ -14,10 +14,54 @@ namespace Sisyphus
                 try
                 {
                     Walk(room);
-                    return;
+                    break;
                 }
                 catch (InvalidSolveException)
                 {
+                }
+            }
+
+            Diverge(room);
+        }
+
+        private static void Diverge(Room room)
+        {
+            var clone = room.Clone();
+            for (var step = 0; step < room.solutionPath.Count; step++)
+            {
+                try
+                {
+                    var minPathTraversal = UnityEngine.Random.value;
+                    var minPathLength =
+                        (int)
+                            (clone.Width*minPathTraversal*clone.Height*minPathTraversal*clone.Depth*
+                             minPathTraversal);
+
+                    if (minPathLength > 0)
+                    {
+                        var currentLocation = clone.solutionPath[step];
+                        var possibleSides = Enum.GetValues(typeof (Sides)).Cast<Sides>().ToArray();
+                        var possibleDirections =
+                            Enum.GetValues(typeof (Directions))
+                                .Cast<Directions>()
+                                .Where(d => d != Directions.None && d != Directions.NUM_VALUES)
+                                .ToArray();
+
+                        var solutionPath = new List<Int3> {currentLocation};
+                        Directions lastDirection = Directions.None;
+
+                        for (var i = 0; i < minPathLength; i++)
+                        {
+                            currentLocation = StepAlongPath(clone, currentLocation, possibleSides, possibleDirections,
+                                solutionPath, i, minPathLength, ref lastDirection);
+                        }
+                    }
+
+                    clone.CopyInto(room);
+                }
+                catch (InvalidSolveException)
+                {
+                    
                 }
             }
         }
@@ -28,55 +72,22 @@ namespace Sisyphus
             room.roomBuffer.Assign(x => Sides.None);
             room.roomBuffer[entryPoint.X, entryPoint.Y, entryPoint.Z] = Sides.Bottom;
 
-            const double MinDimensionalTraversal = 0.7;
+            const double MinDimensionalTraversal = 0.5;
             var minPathLength =
                 (int)
                     (room.Width*MinDimensionalTraversal*room.Height*MinDimensionalTraversal*room.Depth*
                      MinDimensionalTraversal);
 
             var currentLocation = entryPoint;
-            var intendedLocation = entryPoint;
-
             var possibleSides = Enum.GetValues(typeof (Sides)).Cast<Sides>().ToArray();
             var possibleDirections = Enum.GetValues(typeof (Directions)).Cast<Directions>().Where(d => d != Directions.None && d != Directions.NUM_VALUES).ToArray();
 
             var solutionPath = new List<Int3> {currentLocation};
-
-            Sides currentSide = Sides.Bottom;
             Directions lastDirection = Directions.None;
 
             for (var i = 0; i < minPathLength; i++)
             {
-                currentSide = room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z];
-
-                if (lastDirection != Directions.None && UnityEngine.Random.Range(0, 2) == 0)
-                {
-                    var side = currentSide;
-                    var direction = lastDirection;
-
-                    var desirableSides = possibleSides
-                        .Where(s => (s & side) == 0 && s != Sides.None &&
-                                    (
-                                        s == Sides.Left && direction != Directions.Right
-                                        || s == Sides.Right && direction != Directions.Left
-                                        || s == Sides.Top && direction != Directions.Down
-                                        || s == Sides.Bottom && direction != Directions.Up
-                                        || s == Sides.Front && direction != Directions.Back
-                                        || s == Sides.Rear && direction != Directions.Forward
-                                        ));
-
-                    if (desirableSides.Any())
-                    {
-                        currentSide = desirableSides.SelectRandom();
-                        room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z] |= currentSide;
-                    }
-                }
-
-                intendedLocation = DetermineNextLocation(room, currentLocation, possibleDirections, ref lastDirection);
-
-                room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] |= currentSide;
-                currentLocation = intendedLocation;
-                solutionPath.Add(currentLocation);
+                currentLocation = StepAlongPath(room, currentLocation, possibleSides, possibleDirections, solutionPath, i, minPathLength, ref lastDirection);
 
                 if (i == minPathLength - 1)
                 {
@@ -84,6 +95,43 @@ namespace Sisyphus
                     room.solutionPath = solutionPath.ToList();
                 }
             }
+        }
+
+        private static Int3 StepAlongPath(Room room, Int3 currentLocation, Sides[] possibleSides,
+            Directions[] possibleDirections, List<Int3> solutionPath, int i, int minPathLength, ref Directions lastDirection)
+        {
+            var currentSide = room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z];
+
+            if (lastDirection != Directions.None && UnityEngine.Random.Range(0, 2) == 0)
+            {
+                var side = currentSide;
+                var direction = lastDirection;
+
+                var desirableSides = possibleSides
+                    .Where(s => (s & side) == 0 && s != Sides.None &&
+                                (
+                                    s == Sides.Left && direction != Directions.Right
+                                    || s == Sides.Right && direction != Directions.Left
+                                    || s == Sides.Top && direction != Directions.Down
+                                    || s == Sides.Bottom && direction != Directions.Up
+                                    || s == Sides.Front && direction != Directions.Back
+                                    || s == Sides.Rear && direction != Directions.Forward
+                                    ));
+
+                if (desirableSides.Any())
+                {
+                    currentSide = desirableSides.SelectRandom();
+                    room.roomBuffer[currentLocation.X, currentLocation.Y, currentLocation.Z] |= currentSide;
+                }
+            }
+
+            var intendedLocation = DetermineNextLocation(room, currentLocation, possibleDirections, ref lastDirection);
+
+            room.roomBuffer[intendedLocation.X, intendedLocation.Y, intendedLocation.Z] |= currentSide;
+            currentLocation = intendedLocation;
+            solutionPath.Add(currentLocation);
+
+            return currentLocation;
         }
 
         private static Int3 DetermineNextLocation(Room room, Int3 currentLocation, Directions[] possibleDirections, ref Directions lastDirection)
@@ -163,7 +211,8 @@ namespace Sisyphus
                     throw new InvalidSolveException();
                 }
 
-                lastDirection = possibleDirections.Where(d => (invalidDirections & d) == 0).SelectRandom();
+                var directions = invalidDirections;
+                lastDirection = possibleDirections.Where(d => (directions & d) == 0).SelectRandom();
                 if (lastDirection == Directions.None)
                     throw new InvalidSolveException();
 
