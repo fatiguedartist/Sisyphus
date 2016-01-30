@@ -12,19 +12,19 @@ public class WorldRotation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.Keypad6))
             zDegree += 90f;
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp(KeyCode.Keypad4))
             zDegree -= 90f;
 
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyUp(KeyCode.Keypad8))
             yDegree += 90f;
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        if (Input.GetKeyUp(KeyCode.Keypad2))
             yDegree -= 90f;
 
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.Keypad1))
             xDegree += 90f;
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.Keypad3))
             xDegree -= 90f;
 
 
