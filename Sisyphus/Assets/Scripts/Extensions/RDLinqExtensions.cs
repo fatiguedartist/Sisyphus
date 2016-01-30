@@ -34,6 +34,25 @@ public static class LinqExtensions
         return forEach;
     }
 
+    public static T[,,] Assign<T>(this T[,,] collection, Func<T, T> func)
+    {
+        for (var x = 0; x < collection.GetLength(0); x++)
+            for (var y = 0; y < collection.GetLength(1); y++)
+                for (var z = 0; z < collection.GetLength(2); z++)
+                    collection[x, y, z] = func(collection[x, y, z]);
+
+        return collection;
+    }
+
+    public static T[,] Assign<T>(this T[,] collection, Func<T, T> func)
+    {
+        for (var x = 0; x < collection.GetLength(0); x++)
+            for (var y = 0; y < collection.GetLength(1); y++)
+                collection[x, y] = func(collection[x, y]);
+
+        return collection;
+    }
+
     public static T[] Assign<T>(this T[] collection, Func<T, T> func)
     {
         for (var i = 0; i < collection.Length; i++)
