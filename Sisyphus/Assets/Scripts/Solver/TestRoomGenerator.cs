@@ -17,6 +17,7 @@ namespace Sisyphus
         public int height = 15;
         public int width = 15;
         public float scale = 1;
+        public List<Material> skyboxes;
 
         public GameObject player;
 
@@ -31,6 +32,7 @@ namespace Sisyphus
 
         private void Start()
         {
+            RenderSettings.skybox = skyboxes.SelectRandom();
             GameState.Instance.LevelChanged += GoToNextLevel;
 
             InitFields();
