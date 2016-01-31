@@ -60,6 +60,9 @@ namespace Sisyphus
 
         private void SetSkybox()
         {
+            RenderSettings.skybox = skyboxes.SelectRandom();
+
+            /*
             if (GameState.Instance.Level >= 3 && GameState.Instance.Level <= 5)
             {
                 RenderSettings.skybox = skyboxes[0];
@@ -72,6 +75,7 @@ namespace Sisyphus
             {
                 RenderSettings.skybox = skyboxes[2];
             }
+            */
         }
 
         private void HandleAudio()
