@@ -30,7 +30,9 @@ namespace Sisyphus
 
         private void Start()
         {
-            RenderSettings.skybox = skyboxes.SelectRandom();
+            var skybox = skyboxes.SelectRandom();
+            RenderSettings.skybox = skybox;
+
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
             GenGeometry();

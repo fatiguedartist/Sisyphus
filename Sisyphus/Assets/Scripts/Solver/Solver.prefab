@@ -435,19 +435,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   player: {fileID: 0}
   leftSideWalls:
-  - {fileID: 139676, guid: 7e13c736ea3e02740b6f9fe5dfe1d30f, type: 2}
+  - {fileID: 112886, guid: 2f15b28fa572d4a4e8cc3c591998974e, type: 2}
   rightSideWalls:
-  - {fileID: 106680, guid: ccb9a2530b7ce3641bb0db36733ae72b, type: 2}
+  - {fileID: 137296, guid: 8abaab1c03be6094e8afc5eb87122d48, type: 2}
   topSideWalls:
   - {fileID: 134394, guid: c847967414d4efd42a6bd8fe7bda28e2, type: 2}
   bottomSideWalls:
   - {fileID: 189948, guid: 96c88724987b7474f8e97db7f9e15d54, type: 2}
   frontSideWalls:
-  - {fileID: 142252, guid: 13db3ef8f2dcbce4bb3790f746c3c2ac, type: 2}
+  - {fileID: 150586, guid: bb451da44dd5f2a44a680d810b493008, type: 2}
   backSideWalls:
-  - {fileID: 135584, guid: f04d1264c18b2af47921280cbde6dc4e, type: 2}
+  - {fileID: 174206, guid: 2d2a3bb991e1c184c98a441277785331, type: 2}
   centerPieces:
-  - {fileID: 0}
+  - {fileID: 174206, guid: 2d2a3bb991e1c184c98a441277785331, type: 2}
   acidPieces:
   - {fileID: 199240, guid: 3bdb9d15363a1324ab258fbf42129ccb, type: 2}
 --- !u!123 &12369084

@@ -33,14 +33,14 @@ namespace Sisyphus
             UnityEngine.Debug.Log("I should be ded");
             Instance.PlayerIsDead = true;
             ResetGamestate();
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadScene(0);
         }
 
         public static void IncreaseLevel()
         {
             Instance.Level = Mathf.Min(Instance.Level + 1, MaxLevel);
             UnityEngine.Debug.Log("Level increased to [" + Instance.Level + "]!");
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadScene(0);
         }
     }
 }
