@@ -136,7 +136,7 @@ Material:
       data:
         first:
           name: _Exposure
-        second: 2.7
+        second: 0.3
       data:
         first:
           name: _Parallax
