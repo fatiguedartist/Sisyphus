@@ -18,7 +18,7 @@ namespace Sisyphus
 
         private GameState()
         {
-            Level = 2;
+            Level = 3;
             PlayerIsDead = false;
         }
 
@@ -29,16 +29,20 @@ namespace Sisyphus
 
         public static void KillPlayer()
         {
+            UnityEngine.Debug.Log("I should be ded");
             Instance.PlayerIsDead = true;
             Instance.PlayerDied.Raise();
             ResetGamestate();
+
+            Application.LoadLevel(0);
         }
 
         public static void IncreaseLevel()
         {
             Instance.Level = Mathf.Min(Instance.Level + 1, MaxLevel);
-            Instance.LevelChanged.Raise(Instance.Level);
             UnityEngine.Debug.Log("Level increased to [" + Instance.Level + "]!");
+
+            Application.LoadLevel(0);
         }
     }
 }

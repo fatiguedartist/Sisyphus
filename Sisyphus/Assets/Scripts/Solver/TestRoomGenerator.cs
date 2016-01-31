@@ -24,7 +24,6 @@ namespace Sisyphus
         private void Start()
         {
             RenderSettings.skybox = skyboxes.SelectRandom();
-            GameState.Instance.LevelChanged += GoToNextLevel;
 
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
@@ -35,7 +34,6 @@ namespace Sisyphus
 
         private void GoToNextLevel(int level)
         {
-            Application.LoadLevel(0);
             /*
             GameState.Instance.LevelChanged -= GoToNextLevel;
             var roomGen = generatorPrefab.transform.Instantiate();
