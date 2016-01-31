@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sisyphus
 {
@@ -21,31 +22,23 @@ namespace Sisyphus
 
         public GameObject player;
 
+        public List<GameObject> leftSideWalls; 
+        public List<GameObject> rightSideWalls;
+        public List<GameObject> topSideWalls;
+        public List<GameObject> bottomSideWalls;
+        public List<GameObject> frontSideWalls;
+        public List<GameObject> backSideWalls;
+        public List<GameObject> centerPieces;
+        public List<GameObject> acidPieces;
+
         private void Start()
         {
             RenderSettings.skybox = skyboxes.SelectRandom();
-
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
             GenGeometry();
             transform.localScale = scale * Vector3.one;
             player.transform.position = _room.entryPoint.ToV3() * scale;
-        }
-
-        private void GoToNextLevel(int level)
-        {
-            /*
-            GameState.Instance.LevelChanged -= GoToNextLevel;
-            var roomGen = generatorPrefab.transform.Instantiate();
-            roomGen.transform.position = Vector3.zero;
-            roomGen.transform.rotation = Quaternion.identity;
-            roomGen.transform.localScale = Vector3.one;
-            */
-            /*float angle;
-            Vector3 axis;
-            transform.rotation.ToAngleAxis(out angle, out axis);
-            roomGen.transform.RotateAround(player.transform.position, axis, angle);*/
-           // Destroy(gameObject);
         }
 
         private void InitFields(int level)
@@ -156,12 +149,10 @@ namespace Sisyphus
 
                 if (side == Sides.None)
                 {
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    var geo = acidPieces.SelectRandom().Instantiate();
                     geo.transform.parent = transform;
                     geo.transform.localPosition = basePos;
                     geo.transform.localScale = baseSize;
-                    geo.GetComponent<MeshRenderer>().material.color = Color.yellow;
-                    geo.AddComponent<DeadlySurface>();
                 }
             }
         }

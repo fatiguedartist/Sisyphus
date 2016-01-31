@@ -433,6 +433,22 @@ MonoBehaviour:
   width: 8
   scale: 4
   player: {fileID: 0}
+  leftSideWalls:
+  - {fileID: 0}
+  rightSideWalls:
+  - {fileID: 0}
+  topSideWalls:
+  - {fileID: 0}
+  bottomSideWalls:
+  - {fileID: 0}
+  frontSideWalls:
+  - {fileID: 0}
+  backSideWalls:
+  - {fileID: 0}
+  centerPieces:
+  - {fileID: 0}
+  acidPieces:
+  - {fileID: 199240, guid: 3bdb9d15363a1324ab258fbf42129ccb, type: 2}
 --- !u!123 &12369084
 LensFlare:
   m_ObjectHideFlags: 1

@@ -1,6 +1,7 @@
 ﻿
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sisyphus
 {
@@ -31,18 +32,15 @@ namespace Sisyphus
         {
             UnityEngine.Debug.Log("I should be ded");
             Instance.PlayerIsDead = true;
-            Instance.PlayerDied.Raise();
             ResetGamestate();
-
-            Application.LoadLevel(0);
+            SceneManager.LoadSceneAsync(0);
         }
 
         public static void IncreaseLevel()
         {
             Instance.Level = Mathf.Min(Instance.Level + 1, MaxLevel);
             UnityEngine.Debug.Log("Level increased to [" + Instance.Level + "]!");
-
-            Application.LoadLevel(0);
+            SceneManager.LoadSceneAsync(0);
         }
     }
 }
