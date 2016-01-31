@@ -244,8 +244,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 0.8308824, g: 0.6048335, b: 0.7498166, a: 1}
-  m_Intensity: 0.1
+  m_Color: {r: 0.9705882, g: 0, b: 0.62251526, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -277,8 +277,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 0.58428854, g: 0.71135974, b: 0.78676474, a: 1}
-  m_Intensity: 0.1
+  m_Color: {r: 0.13300176, g: 0.61712784, b: 0.9044118, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -310,8 +310,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1
+  m_Color: {r: 0.85294116, g: 0.16306229, b: 0.16306229, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -343,8 +343,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 0.85294116, g: 0.84031147, b: 0.39511245, a: 1}
-  m_Intensity: 0.1
+  m_Color: {r: 0.9485294, g: 0.9223632, b: 0, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -409,8 +409,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 0.58520764, g: 0.8088235, b: 0.5293036, a: 1}
-  m_Intensity: 0.1
+  m_Color: {r: 0.31859866, g: 0.9338235, b: 0.16479237, a: 1}
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -728,7 +728,7 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4278190080
+        rgba: 4278190116
       minMaxState: 0
     startSize:
       scalar: 1
@@ -947,7 +947,7 @@ ParticleSystem:
     time3: 0
     m_BurstCount: 0
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       scalar: 1
       maxCurve:
@@ -955,17 +955,17 @@ ParticleSystem:
         m_Curve:
         - time: 0
           value: 1
-          inSlope: 0
-          outSlope: 0
+          inSlope: -2
+          outSlope: -2
           tangentMode: 0
         - time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -1878,9 +1878,9 @@ ParticleSystem:
       minMaxState: 1
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 2
-    type: 0
+    type: 1
     collisionMode: 0
     plane0: {fileID: 0}
     plane1: {fileID: 0}
@@ -1924,7 +1924,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     m_Bounce:
-      scalar: 1
+      scalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
