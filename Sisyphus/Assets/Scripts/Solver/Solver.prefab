@@ -432,6 +432,10 @@ MonoBehaviour:
   height: 8
   width: 8
   scale: 4
+  skyboxes:
+  - {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
+  - {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
+  - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   player: {fileID: 0}
   leftSideWalls:
   - {fileID: 0}
@@ -485,7 +489,23 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171254}
