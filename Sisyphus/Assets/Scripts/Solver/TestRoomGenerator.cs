@@ -84,7 +84,39 @@ namespace Sisyphus
 
             _geoWalls = new List<GameObject>();
 
-            _room = new Room(level, level, level, 0);
+            List<int> levelSize = GetLevelSize(level);
+
+            _room = new Room(levelSize[0], levelSize[1], levelSize[2], 0);
+        }
+
+        private List<int> GetLevelSize(int level)
+        {
+            if (level == 3)
+            {
+                return new List<int> { 3, 3, 3 };
+            }
+
+            int minLevel = Random.Range(0,2);
+
+
+            List<int> toReturn = new List<int>();
+            for(int i = 0; i <= 3; i++ )
+            {
+                if(i == minLevel)
+                {
+                    toReturn.Add(level);
+                }
+                else
+                {
+                    int max = level + Random.Range(1,4);
+                    if (max > 11)
+                    {
+                        max = 11;
+                    }
+                    toReturn.Add(Random.Range(level, max));
+                }
+            }
+            return toReturn;
         }
 
         private void GenGeometry()
