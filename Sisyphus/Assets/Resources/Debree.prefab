@@ -24,9 +24,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 412416}
   - 33: {fileID: 3316448}
-  - 65: {fileID: 6524376}
   - 23: {fileID: 2389500}
   - 54: {fileID: 5419784}
+  - 65: {fileID: 6506112}
   m_Layer: 8
   m_Name: HingeTest
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_GameObject: {fileID: 190274}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.02984148, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.01, z: 0.2}
   m_Children: []
   m_Father: {fileID: 413950}
   m_RootOrder: 0
@@ -107,7 +107,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6524376
+--- !u!65 &6506112
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -125,7 +125,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148098}

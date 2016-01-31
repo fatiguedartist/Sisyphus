@@ -284,7 +284,7 @@ namespace Sisyphus
 
         private void GenDebree()
         {
-            int numberOfSpawns = (_geoWalls.Count * 2);
+            int numberOfSpawns = (_geoWalls.Count);
             for (int i = 0; i < numberOfSpawns; i++)
             {
                 GameObject floorPanel = _geoWalls.SelectRandom();
