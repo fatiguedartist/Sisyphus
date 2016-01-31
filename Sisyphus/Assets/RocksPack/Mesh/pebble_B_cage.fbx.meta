@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: 13a78d144303fc343b4f6071af4f9b12
+guid: c621d707a8ed91f4a929537d07bb6dd9
+timeCreated: 1454268133
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Group001
+    100000: Group003
     100002: //RootNode
-    100004: Group001_pebble_B
-    400000: Group001
+    400000: Group003
     400002: //RootNode
-    400004: Group001_pebble_B
-    2300000: Group001
-    2300002: Group001_pebble_B
-    3300000: Group001
-    3300002: Group001_pebble_B
-    4300000: Group001
-    4300002: Group001_pebble_B
+    2300000: Group003
+    3300000: Group003
+    4300000: Group003
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -54,11 +51,11 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

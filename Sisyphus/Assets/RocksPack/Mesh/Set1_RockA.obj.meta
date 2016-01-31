@@ -5,11 +5,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Group2
     100002: //RootNode
+    100004: pebble_LP_pebble_A
     400000: Group2
     400002: //RootNode
+    400004: pebble_LP_pebble_A
     2300000: Group2
+    2300002: pebble_LP_pebble_A
     3300000: Group2
+    3300002: pebble_LP_pebble_A
     4300000: Group2
+    4300002: pebble_LP_pebble_A
     9500000: //RootNode
   materials:
     importMaterials: 1

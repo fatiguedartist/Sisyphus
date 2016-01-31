@@ -9,6 +9,7 @@ public class WorldRotation : MonoBehaviour
 {
     public GameObject PlayerLocation;
     public Camera FPSView;
+    public AudioSource soundEffect;
 
     private bool transitioning = false;
     public int multiplier = 1;
@@ -55,6 +56,7 @@ public class WorldRotation : MonoBehaviour
         var axis = PlayerLocation.transform.right;
         axis = Snap(axis);
         RequestRotate(axis, -targetAngle * multiplier);
+        soundEffect.Play();
     }
 
     private void RequestRotate(Vector3 axis, int targetAngle)
