@@ -451,6 +451,10 @@ Prefab:
       propertyPath: m_Color.b
       value: 0.16479237
       objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
