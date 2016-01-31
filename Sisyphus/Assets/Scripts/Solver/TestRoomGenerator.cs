@@ -161,12 +161,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
+                                /*
                         var next = y < _room.Height - 1 ? _room.roomBuffer[x, y + 1, z] : side;
                         if (next != Sides.None && (side & Sides.Bottom) == 0)
                         {
                             var rearGeo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.up;
                         }
+                        */
                     }
                         }
 
@@ -176,14 +178,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
-                        var next = y > 0 ? _room.roomBuffer[x, y - 1, z] : side;
+                        /*var next = y > 0 ? _room.roomBuffer[x, y - 1, z] : side;
                         if (next != Sides.None && (side & Sides.Top) == 0)
                         {
                             var rearGeo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.down;
+                        }*/
+                            }
                         }
-                    }
-                }
 
                 if ((side & Sides.Left) > 0)
                 {
@@ -191,12 +193,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
+                                /*
                         var next = x > 0 ? _room.roomBuffer[x - 1, y, z] : side;
                         if (next != Sides.None && (side & Sides.Right) == 0)
                         {
                             var rearGeo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.left;
                         }
+                        */
                     }
                 }
 
@@ -206,12 +210,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
+                                /*
                         var next = x < _room.Width - 1 ? _room.roomBuffer[x + 1, y, z] : side;
                         if (next != Sides.None && (side & Sides.Left) == 0)
                         {
                             var rearGeo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.right;
                         }
+                        */
                     }
                 }
 
@@ -221,12 +227,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
+                                /*
                         var next = z < _room.Depth - 1 ? _room.roomBuffer[x, y, z + 1] : side;
                         if (next != Sides.None && (side & Sides.Rear) == 0)
                         {
                             var rearGeo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.forward;
                         }
+                        */
                     }
                 }
 
@@ -236,12 +244,14 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
 
                     {
+                                /*
                         var next = z > 0 ? _room.roomBuffer[x, y, z - 1] : side;
                         if (next != Sides.None && (side & Sides.Front) == 0)
                         {
                             var rearGeo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                             rearGeo.transform.localPosition = pos + Vector3.back;
                         }
+                        */
                     }
                 }
 
