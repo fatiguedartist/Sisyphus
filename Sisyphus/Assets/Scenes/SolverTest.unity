@@ -307,6 +307,50 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 590160715}
+    - target: {fileID: 189134, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 122098, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 187424, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135588, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 167282, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10884344, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Intensity
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10866590, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
@@ -357,9 +401,9 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 11453260, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: highResolution
-      value: 0
+    - target: {fileID: 10887650, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}

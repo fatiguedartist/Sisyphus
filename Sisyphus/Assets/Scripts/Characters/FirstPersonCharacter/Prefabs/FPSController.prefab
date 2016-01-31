@@ -84,7 +84,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -92,7 +92,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: 1
+  m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -212,7 +212,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -363,7 +363,7 @@ MonoBehaviour:
   screenBlendMode: 0
   hdr: 0
   sepBlurSpread: 2
-  quality: 1
+  quality: 0
   bloomIntensity: 1
   bloomThreshold: 0.2
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
@@ -403,7 +403,7 @@ MonoBehaviour:
   aperture: 0.5
   focalTransform: {fileID: 0}
   maxBlurSize: 2
-  highResolution: 1
+  highResolution: 0
   blurType: 1
   blurSampleCount: 0
   nearBlur: 1
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646b5bc27a658f447b1d929fd5ffbd70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 1
+  mode: 5
   showGeneratedNormals: 0
   offsetScale: 0.2
   blurRadius: 18
@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Radius: 0.4
-  m_SampleCount: 2
+  m_SampleCount: 0
   m_OcclusionIntensity: 1.5
   m_Blur: 2
   m_Downsampling: 2
