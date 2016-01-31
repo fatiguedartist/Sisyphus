@@ -11,6 +11,7 @@ namespace Sisyphus
         public static GameState Instance { get { return _gameState; } }
 
         const int MaxLevel = 11;
+        const int MinLevel = 3;
         public int Level { get; set; }
         public bool PlayerDiedRecently { get; set; }
 
@@ -19,12 +20,12 @@ namespace Sisyphus
 
         private GameState()
         {
-            Level = 3;
+            Level = MinLevel;
         }
 
         public static void ResetGamestate()
         {
-            Instance.Level = 3;
+            Instance.Level = MinLevel;
         }
 
         public static void KillPlayer()
@@ -39,7 +40,7 @@ namespace Sisyphus
         public static void IncreaseLevel()
         {
             Instance.PlayerDiedRecently = false;
-            Instance.Level = Mathf.Min(Instance.Level + 1, MaxLevel);
+            Instance.Level = Mathf.Max((Instance.Level + 1) % (MaxLevel + 1), MinLevel);
             UnityEngine.Debug.Log("Level increased to [" + Instance.Level + "]!");
             SceneManager.LoadScene(0);
         }
