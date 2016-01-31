@@ -11,6 +11,8 @@ namespace Sisyphus
         private Color _endColor;
         private Color _pathColor;
 
+        private List<GameObject> _geoWalls;
+
         private Room _room;
         private Color _startColor;
         private Color _wireColor;
@@ -39,6 +41,7 @@ namespace Sisyphus
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
             GenGeometry();
+            GenProps();
             transform.localScale = scale * Vector3.one;
             player.transform.position = _room.entryPoint.ToV3() * scale;
         }
@@ -52,6 +55,8 @@ namespace Sisyphus
 
             //_pathColor.a = 0.75f;
             _wireColor.a = 0.25f;
+
+            _geoWalls = new List<GameObject>();
 
             _room = new Room(level, level, level, 0);
         }
@@ -101,6 +106,7 @@ namespace Sisyphus
                     {
                         var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.left;
+                        _geoWalls.Add(geo);
                     }
                 }
                 if (x == _room.Width - 1)
@@ -109,6 +115,7 @@ namespace Sisyphus
                     {
                         var geo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.right;
+                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -118,6 +125,7 @@ namespace Sisyphus
                     {
                         var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.down;
+                        _geoWalls.Add(geo);
                     }
                 }
                 if (y == _room.Height - 1)
@@ -126,6 +134,7 @@ namespace Sisyphus
                     {
                         var geo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.up;
+                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -135,6 +144,7 @@ namespace Sisyphus
                     {
                         var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.back;
+                        _geoWalls.Add(geo);
                     }
                 }
                 if (z == _room.Depth - 1)
@@ -143,6 +153,7 @@ namespace Sisyphus
                     {
                         var geo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.forward;
+                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -159,7 +170,8 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.up;
                         }
                     }
-                        }
+                    _geoWalls.Add(geo);
+                }
 
                 if ((side & Sides.Bottom) > 0)
                 {
@@ -174,6 +186,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.down;
                         }
                     }
+                    _geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Left) > 0)
@@ -189,6 +202,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.left;
                         }
                     }
+                    _geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Right) > 0)
@@ -204,6 +218,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.right;
                         }
                     }
+                    _geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Front) > 0)
@@ -219,6 +234,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.forward;
                         }
                     }
+                    _geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Rear) > 0)
@@ -234,6 +250,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.back;
                         }
                     }
+                    _geoWalls.Add(geo);
                 }
 
                 if (side == Sides.None)
@@ -243,6 +260,29 @@ namespace Sisyphus
                     geo.transform.localPosition = pos;
                     geo.transform.localScale = baseSize;
                 }
+            }
+        }
+
+        private void GenProps()
+        {
+            int numberOfSpawns = (_geoWalls.Count / 5);
+            for (int i = 0; i < numberOfSpawns; i++)
+            {
+                // Find a random piece of 'floor'
+                // Find the right panel that is exposed,
+                // Add a small cube for it 
+
+                GameObject floorPanel = _geoWalls.SelectRandom();
+                var geo = Instantiate(Resources.Load("HingeTest", typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
+
+                Destroy(geo.GetComponent<Collider>());
+                geo.transform.parent = transform;
+                geo.transform.position = floorPanel.transform.position;
+
+                geo.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); // Manual scale for now
+                //geo.transform.localScale = floorPanel.transform.localScale;
+
+                geo.name = "GeneratedProp";
             }
         }
 
