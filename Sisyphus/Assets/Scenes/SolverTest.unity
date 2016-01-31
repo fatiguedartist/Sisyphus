@@ -307,18 +307,6 @@ Prefab:
       propertyPath: FPSView
       value: 
       objectReference: {fileID: 1280034020}
-    - target: {fileID: 8270438, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Pitch
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8270438, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Volume
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: deathKnoll
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
