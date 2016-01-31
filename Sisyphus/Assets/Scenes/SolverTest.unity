@@ -182,7 +182,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: m_Intensity
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: m_Intensity
@@ -190,7 +190,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 10884344, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: m_Intensity
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: m_Intensity
