@@ -12,7 +12,7 @@ namespace Sisyphus
 
         const int MaxLevel = 11;
         public int Level { get; set; }
-        public bool PlayerIsDead { get; set; }
+        public bool PlayerDiedRecently { get; set; }
 
         public event Action PlayerDied;
         public event Action<int> LevelChanged;
@@ -20,24 +20,25 @@ namespace Sisyphus
         private GameState()
         {
             Level = 3;
-            PlayerIsDead = false;
         }
 
         public static void ResetGamestate()
         {
-            _gameState = new GameState();
+            Instance.Level = 3;
         }
 
         public static void KillPlayer()
         {
             UnityEngine.Debug.Log("I should be ded");
-            Instance.PlayerIsDead = true;
+            Instance.PlayerDiedRecently = true;
+
             ResetGamestate();
             SceneManager.LoadScene(0);
         }
 
         public static void IncreaseLevel()
         {
+            Instance.PlayerDiedRecently = false;
             Instance.Level = Mathf.Min(Instance.Level + 1, MaxLevel);
             UnityEngine.Debug.Log("Level increased to [" + Instance.Level + "]!");
             SceneManager.LoadScene(0);
