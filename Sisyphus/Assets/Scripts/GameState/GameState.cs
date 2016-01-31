@@ -10,8 +10,8 @@ namespace Sisyphus
         private static GameState _gameState = new GameState();
         public static GameState Instance { get { return _gameState; } }
 
-        const int MaxLevel = 11;
-        const int MinLevel = 3;
+        public const int MaxLevel = 11;
+        public const int MinLevel = 3;
         public int Level { get; set; }
         public bool PlayerDiedRecently { get; set; }
 
