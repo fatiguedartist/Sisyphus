@@ -162,10 +162,14 @@ namespace Sisyphus
 
                 if ((side & Sides.Top) > 0)
                 {
-                    var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
-                    geo.transform.localPosition = pos;
-
+                    var next = y < _room.Height - 1 ? _room.roomBuffer[x, y + 1, z] : Sides.None;
+                    if ((next & Sides.Bottom) == 0)
                     {
+                        var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos;
+                    }
+                    
+                            {
                                 /*
                         var next = y < _room.Height - 1 ? _room.roomBuffer[x, y + 1, z] : side;
                         if (next != Sides.None && (side & Sides.Bottom) == 0)
@@ -174,7 +178,7 @@ namespace Sisyphus
                             rearGeo.transform.localPosition = pos + Vector3.up;
                         }
                         */
-                    }
+                            }
                     //_geoWalls.Add(geo);
                 }
 
@@ -214,8 +218,12 @@ namespace Sisyphus
 
                 if ((side & Sides.Right) > 0)
                 {
-                    var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
-                    geo.transform.localPosition = pos;
+                    var next = x < _room.Width - 1 ? _room.roomBuffer[x + 1, y, z] : Sides.None;
+                    if ((next & Sides.Left) == 0)
+                    {
+                        var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos;
+                    }
 
                     {
                                 /*
@@ -232,8 +240,13 @@ namespace Sisyphus
 
                 if ((side & Sides.Front) > 0)
                 {
-                    var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
-                    geo.transform.localPosition = pos;
+                    var next = z < _room.Depth - 1 ? _room.roomBuffer[x, y, z + 1] : Sides.None;
+
+                    if ((next & Sides.Rear) == 0)
+                    {
+                        var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos;
+                    }
 
                     {
                                 /*
