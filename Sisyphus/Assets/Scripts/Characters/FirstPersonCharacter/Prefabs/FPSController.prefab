@@ -212,7 +212,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -321,10 +321,13 @@ MonoBehaviour:
     BobAmount: 0.1
   m_StepInterval: 5
   m_FootstepSounds:
-  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
-  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
-  m_JumpSound: {fileID: 8300000, guid: 5897aeed9b676024fbb8c694b421a861, type: 3}
-  m_LandSound: {fileID: 8300000, guid: 3b09d59f4499d45428baa7a21e954296, type: 3}
+  - {fileID: 8300000, guid: f3daa2bd1e5f4a548bec5ccd8e07e94c, type: 3}
+  - {fileID: 8300000, guid: 9d4ee14a09b85bc4e8bdea8c4bba4881, type: 3}
+  - {fileID: 8300000, guid: cac51469cb3965340bbc5b256b947fbb, type: 3}
+  - {fileID: 8300000, guid: db544917f7be59b42a068b54f3e4f3a2, type: 3}
+  - {fileID: 8300000, guid: 21f7745552a3a1140a407af23f02aef0, type: 3}
+  m_JumpSound: {fileID: 8300000, guid: 3ea547addcdcf714cb25413f4d062247, type: 3}
+  m_LandSound: {fileID: 8300000, guid: c93c25c7350154543bd793f78ba98a95, type: 3}
 --- !u!114 &11407528
 MonoBehaviour:
   m_ObjectHideFlags: 1

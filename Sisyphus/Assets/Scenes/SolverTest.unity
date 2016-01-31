@@ -295,6 +295,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 590160715}
     - target: {fileID: 11471490, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: PlayerLocation
       value: 
@@ -303,53 +307,13 @@ Prefab:
       propertyPath: FPSView
       value: 
       objectReference: {fileID: 1280034020}
-    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 590160715}
-    - target: {fileID: 189134, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8270438, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Pitch
+      value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 122098, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 187424, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 135588, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 167282, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 10884344, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 10843336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 10829408, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 10803336, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 10802914, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Intensity
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 10866590, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 1
+    - target: {fileID: 8270438, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: m_Volume
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
@@ -401,9 +365,9 @@ Prefab:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 10887650, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 2
+    - target: {fileID: 8200000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
@@ -516,3 +480,52 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62575b548b731be4a891e16dc6959530, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1749364228 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100002, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 2}
+  m_PrefabInternal: {fileID: 1170047080}
+--- !u!164 &1749364237
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1749364228}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: 0
+  m_RoomHF: 0
+  m_RoomRolloff: 0
+  m_DecayTime: 2
+  m_DecayHFRatio: 0.5
+  m_ReflectionsLevel: -10000
+  m_ReverbLevel: 0
+  m_ReverbDelay: 0.04
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 27
+--- !u!166 &1749364238
+AudioChorusFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1749364228}
+  m_Enabled: 1
+  m_DryMix: 0.5
+  m_WetMix1: 0.5
+  m_WetMix2: 0.5
+  m_WetMix3: 0.5
+  m_Delay: 40
+  m_Rate: 0.8
+  m_Depth: 0.03
+--- !u!170 &1749364239
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1749364228}
+  m_Enabled: 1
+  m_DistortionLevel: 0.5
