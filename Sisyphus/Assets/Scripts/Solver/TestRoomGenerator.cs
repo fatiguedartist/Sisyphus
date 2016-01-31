@@ -81,20 +81,37 @@ namespace Sisyphus
                     entryNode.transform.parent = transform;
                     entryNode.transform.localPosition = new Vector3 (pos.x,pos.y-.15f,pos.z);
                     Destroy(entryNode.GetComponent<Collider>());
+                        }
+                        else if (posIntVector.Equals(_room.door))
+                        {
+                            var exitNode = exit.InstantiateToParentLocal(transform);
+                            exitNode.transform.localPosition = pos;
 
-                }
-                else if (posIntVector.Equals(_room.door))
-                {
-                    var exitNode = exit.Instantiate();
-                    exitNode.transform.parent = transform;
-                    exitNode.transform.localPosition = new Vector3 (pos.x,pos.y-0.5f,pos.z);
-                    exitNode.gameObject.AddComponent<LevelCompleteSurface>();
-                    Destroy(exitNode.GetComponent<Collider>());
+                            if ((side & Sides.Top) > 0)
+                            {
+                                exitNode.transform.localEulerAngles = Vector3.right*180;
+                            }
+                            if ((side & Sides.Left) > 0)
+                            {
+                                exitNode.transform.localEulerAngles = Vector3.forward*-90;
+                            }
+                            if ((side & Sides.Right) > 0)
+                            {
+                                exitNode.transform.localEulerAngles = Vector3.forward*90;
+                            }
+                            if ((side & Sides.Front) > 0)
+                            {
+                                exitNode.transform.localEulerAngles = Vector3.right*-90;
+                            }
+                            if ((side & Sides.Rear) > 0)
+                            {
+                                exitNode.transform.localEulerAngles = Vector3.right * 90;
+                            }
                         }
 
-                if (x == 0)
-                {
-                    if (side == Sides.None)
+                        if (x == 0)
+                        {
+                            if (side == Sides.None)
                     {
                         var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.left;

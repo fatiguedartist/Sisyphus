@@ -416,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerLocation: {fileID: 0}
   FPSView: {fileID: 0}
+  multiplier: 1
 --- !u!114 &11496794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,6 +436,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   player: {fileID: 0}
   entry: {fileID: 11493212, guid: cde0f9d03f50e484dbb3e74bf5593165, type: 2}
+  exit: {fileID: 11438826, guid: a74d6c1e0c291b64db4bad3a3b342144, type: 2}
   leftSideWalls:
   - {fileID: 112886, guid: 2f15b28fa572d4a4e8cc3c591998974e, type: 2}
   rightSideWalls:
