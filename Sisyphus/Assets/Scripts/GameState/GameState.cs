@@ -20,7 +20,7 @@ namespace Sisyphus
 
         private GameState()
         {
-            Level = MinLevel;
+            Level = 3;
         }
 
         public static void ResetGamestate()
