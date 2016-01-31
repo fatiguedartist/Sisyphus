@@ -18,7 +18,7 @@ namespace Sisyphus
 
         private GameState()
         {
-            Level = 2;
+            Level = 3;
             PlayerIsDead = false;
         }
 
@@ -30,8 +30,8 @@ namespace Sisyphus
         public static void KillPlayer()
         {
             Instance.PlayerIsDead = true;
-            Instance.PlayerDied.Raise();
             ResetGamestate();
+            Instance.PlayerDied.Raise();
         }
 
         public static void IncreaseLevel()

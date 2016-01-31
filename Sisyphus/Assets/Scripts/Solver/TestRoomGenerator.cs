@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sisyphus
 {
@@ -33,7 +34,7 @@ namespace Sisyphus
         private void Start()
         {
             RenderSettings.skybox = skyboxes.SelectRandom();
-            GameState.Instance.LevelChanged += GoToNextLevel;
+            GameState.Instance.LevelChanged += OnLevelChanged;
 
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
@@ -42,9 +43,10 @@ namespace Sisyphus
             player.transform.position = _room.entryPoint.ToV3() * scale;
         }
 
-        private void GoToNextLevel(int level)
+        private void OnLevelChanged(int level)
         {
-            Application.LoadLevel(0);
+            GameState.Instance.LevelChanged -= OnLevelChanged;
+            SceneManager.LoadSceneAsync(0);
             /*
             GameState.Instance.LevelChanged -= GoToNextLevel;
             var roomGen = generatorPrefab.transform.Instantiate();
