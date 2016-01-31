@@ -11,6 +11,7 @@ public class WorldRotation : MonoBehaviour
     public Camera FPSView;
 
     private bool transitioning = false;
+    public int multiplier = 1;
 
     void Update()
     {
@@ -53,7 +54,7 @@ public class WorldRotation : MonoBehaviour
 
         var axis = PlayerLocation.transform.right;
         axis = Snap(axis);
-        RequestRotate(axis, -targetAngle);
+        RequestRotate(axis, -targetAngle * multiplier);
     }
 
     private void RequestRotate(Vector3 axis, int targetAngle)
