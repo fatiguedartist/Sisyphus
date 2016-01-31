@@ -40,6 +40,11 @@ namespace Sisyphus
         public GameObject spikesFront;
         public GameObject spikesBack;
 
+        public AudioClip SuccessSound;
+        public AudioClip FailureSound;
+
+        public AudioSource localSource;
+
         private void Start()
         {
             var skybox = skyboxes.SelectRandom();
@@ -51,6 +56,20 @@ namespace Sisyphus
             GenDebree();
             transform.localScale = scale * Vector3.one;
             player.transform.position = _room.entryPoint.ToV3() * scale;
+            HandleAudio();
+        }
+
+        private void HandleAudio()
+        {
+            if (GameState.Instance.PlayerDiedRecently)
+            {
+                localSource.clip = FailureSound;
+            }
+            else
+            {
+                localSource.clip = SuccessSound;
+            }
+            localSource.Play();
         }
 
         private void InitFields(int level)

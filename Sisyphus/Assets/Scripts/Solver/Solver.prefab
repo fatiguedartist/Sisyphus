@@ -246,8 +246,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 585eac5570f89bb4a87605db2fa7fe41, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.05
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -564,6 +564,9 @@ MonoBehaviour:
   spikesBottom: {fileID: 167830, guid: ad7ba54ff2ce53b4086d3857acc707b9, type: 2}
   spikesFront: {fileID: 172972, guid: 3050a6525666b0e45b4bbdf96db73fad, type: 2}
   spikesBack: {fileID: 114778, guid: 53e1ee25db6420646b0ab0836d0cc4f1, type: 2}
+  SuccessSound: {fileID: 8300000, guid: 561f95b73c74b8e42b6444b5545f37de, type: 3}
+  FailureSound: {fileID: 8300000, guid: 2ef786cdb12b65543b0ae5c30d1ada89, type: 3}
+  localSource: {fileID: 0}
 --- !u!123 &12369084
 LensFlare:
   m_ObjectHideFlags: 1
