@@ -284,11 +284,13 @@ namespace Sisyphus
 
         private void GenDebree()
         {
+            string[] rockOptions = new string[] { "RockA", "RockB", "RockC" };
+
             int numberOfSpawns = (_geoWalls.Count * 2);
             for (int i = 0; i < numberOfSpawns; i++)
             {
                 GameObject floorPanel = _geoWalls.SelectRandom();
-                var geo = Instantiate(Resources.Load("Debree", typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
+                var geo = Instantiate(Resources.Load(rockOptions.SelectRandom(), typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
                 float randomX = Random.Range(-1.0f, 1.0f);
                 float randomZ = Random.Range(-1.0f, 1.0f);
 
