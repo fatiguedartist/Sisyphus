@@ -295,10 +295,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 590160715}
     - target: {fileID: 11471490, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: PlayerLocation
       value: 
@@ -307,20 +303,11 @@ Prefab:
       propertyPath: FPSView
       value: 
       objectReference: {fileID: 1280034020}
-    - target: {fileID: 10866590, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_Shadows.m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19909288, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19909288, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 12391468, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 590160715}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &590160715 stripped

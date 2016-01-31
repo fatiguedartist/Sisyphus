@@ -58,7 +58,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 401808}
   - 108: {fileID: 10866590}
-  - 123: {fileID: 12391468}
   m_Layer: 0
   m_Name: Directional light
   m_TagString: Untagged
@@ -483,27 +482,18 @@ MonoBehaviour:
   - {fileID: 174206, guid: 2d2a3bb991e1c184c98a441277785331, type: 2}
   acidPieces:
   - {fileID: 199240, guid: 3bdb9d15363a1324ab258fbf42129ccb, type: 2}
+  spikesLeft: {fileID: 110250, guid: ea9f3addc72d95a449d714299a5da7a9, type: 2}
+  spikesRight: {fileID: 181382, guid: c27dd8b7bb0477742a35a722908de8de, type: 2}
+  spikesTop: {fileID: 135484, guid: 74997d3fd0af0a2488ede48b23ea7375, type: 2}
+  spikesBottom: {fileID: 167830, guid: ad7ba54ff2ce53b4086d3857acc707b9, type: 2}
+  spikesFront: {fileID: 172972, guid: 3050a6525666b0e45b4bbdf96db73fad, type: 2}
+  spikesBack: {fileID: 114778, guid: 53e1ee25db6420646b0ab0836d0cc4f1, type: 2}
 --- !u!123 &12369084
 LensFlare:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 187424}
-  m_Enabled: 1
-  m_Flare: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 1
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
---- !u!123 &12391468
-LensFlare:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157814}
   m_Enabled: 1
   m_Flare: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -2019,8 +2009,8 @@ ParticleSystemRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146170}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
