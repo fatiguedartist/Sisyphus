@@ -178,8 +178,13 @@ namespace Sisyphus
                     
                     if (next != Sides.None && (side & Sides.Bottom) == 0)
                     {
-                        var spikeGeo = spikesBottom.InstantiateToParentLocal(transform);
-                        spikeGeo.transform.localPosition = pos + Vector3.up;
+                        var localPosition = pos + Vector3.up;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var spikeGeo = spikesBottom.InstantiateToParentLocal(transform);
+                            spikeGeo.transform.localPosition = localPosition;
+                        }
                     }
                     //_geoWalls.Add(geo);
                 }
@@ -192,8 +197,13 @@ namespace Sisyphus
                     var next = y > 0 ? _room.roomBuffer[x, y - 1, z] : Sides.None;
                     if (next != Sides.None && (side & Sides.Top) == 0)
                     {
-                        var rearGeo = spikesTop.InstantiateToParentLocal(transform);
-                        rearGeo.transform.localPosition = pos + Vector3.down;
+                        var localPosition = pos + Vector3.down;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var rearGeo = spikesTop.InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = localPosition;
+                        }
                     }
                     _geoWalls.Add(geo);
                         }
@@ -206,8 +216,13 @@ namespace Sisyphus
                     var next = x > 0 ? _room.roomBuffer[x - 1, y, z] : Sides.None;
                     if (next != Sides.None && (side & Sides.Right) == 0)
                     {
-                        var rearGeo = spikesRight.InstantiateToParentLocal(transform);
-                        rearGeo.transform.localPosition = pos + Vector3.left;
+                        var localPosition = pos + Vector3.left;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var rearGeo = spikesRight.InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = localPosition;
+                        }
                     }
                 }
 
@@ -222,8 +237,13 @@ namespace Sisyphus
 
                     if (next != Sides.None && (side & Sides.Left) == 0)
                     {
-                        var rearGeo = spikesLeft.InstantiateToParentLocal(transform);
-                        rearGeo.transform.localPosition = pos + Vector3.right;
+                        var localPosition = pos + Vector3.right;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var rearGeo = spikesLeft.InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = localPosition;
+                        }
                     }
                 }
 
@@ -239,8 +259,13 @@ namespace Sisyphus
 
                     if (next != Sides.None && (side & Sides.Rear) == 0)
                     {
-                        var rearGeo = spikesBack.InstantiateToParentLocal(transform);
-                        rearGeo.transform.localPosition = pos + Vector3.forward;
+                        var localPosition = pos + Vector3.forward;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var rearGeo = spikesBack.InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = localPosition;
+                        }
                     }
                 }
 
@@ -252,8 +277,13 @@ namespace Sisyphus
                     var next = z > 0 ? _room.roomBuffer[x, y, z - 1] : Sides.None;
                     if (next != Sides.None && (side & Sides.Front) == 0)
                     {
-                        var rearGeo = spikesFront.InstantiateToParentLocal(transform);
-                        rearGeo.transform.localPosition = pos + Vector3.back;
+                        var localPosition = pos + Vector3.back;
+                        var intVector = localPosition.ToIntVector();
+                        if (!intVector.Equals(_room.door) && !intVector.Equals(_room.entryPoint))
+                        {
+                            var rearGeo = spikesFront.InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = localPosition;
+                        }
                     }
                 }
 
