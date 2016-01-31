@@ -41,7 +41,7 @@ namespace Sisyphus
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
             GenGeometry();
-            GenProps();
+            GenDebree();
             transform.localScale = scale * Vector3.one;
             player.transform.position = _room.entryPoint.ToV3() * scale;
         }
@@ -272,24 +272,24 @@ namespace Sisyphus
             }
         }
 
-        private void GenProps()
+        private void GenDebree()
         {
-            int numberOfSpawns = (_geoWalls.Count / 5);
+            int numberOfSpawns = (_geoWalls.Count * 2);
             for (int i = 0; i < numberOfSpawns; i++)
             {
-                // Find a random piece of 'floor'
-                // Find the right panel that is exposed,
-                // Add a small cube for it 
-
                 GameObject floorPanel = _geoWalls.SelectRandom();
-                var geo = Instantiate(Resources.Load("HingeTest", typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
+                var geo = Instantiate(Resources.Load("Debree", typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
+                float randomX = Random.Range(-1.0f, 1.0f);
+                float randomZ = Random.Range(-1.0f, 1.0f);
 
-                Destroy(geo.GetComponent<Collider>());
                 geo.transform.parent = transform;
-                geo.transform.position = floorPanel.transform.position;
-
-                geo.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f); // Manual scale for now
-                //geo.transform.localScale = floorPanel.transform.localScale;
+                Vector3 newPosition = new Vector3()
+                {
+                    x = floorPanel.transform.position.x + randomX,
+                    y = floorPanel.transform.position.y,
+                    z = floorPanel.transform.position.z + randomZ
+                };
+                geo.transform.position = newPosition;
 
                 geo.name = "GeneratedProp";
             }
