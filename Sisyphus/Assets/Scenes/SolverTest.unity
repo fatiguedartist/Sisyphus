@@ -124,10 +124,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 590160715}
     - target: {fileID: 11471490, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
       propertyPath: PlayerLocation
       value: 
@@ -136,6 +132,54 @@ Prefab:
       propertyPath: FPSView
       value: 
       objectReference: {fileID: 1280034020}
+    - target: {fileID: 11496794, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 590160715}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: ShapeModule.boxX
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: ShapeModule.boxY
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: ShapeModule.boxZ
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: CollisionModule.type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: CollisionModule.m_Bounce.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: InitialModule.startColor.maxColor.rgba
+      value: 4278190116
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19810640, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e555e1a1f318b484192dd7ce8df24f38, type: 2}
   m_IsPrefabParent: 0
