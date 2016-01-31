@@ -5,11 +5,16 @@ ModelImporter:
   fileIDToRecycleName:
     100000: Group003
     100002: //RootNode
+    100004: Set1_RockC:Group003
     400000: Group003
     400002: //RootNode
+    400004: Set1_RockC:Group003
     2300000: Group003
+    2300002: Set1_RockC:Group003
     3300000: Group003
+    3300002: Set1_RockC:Group003
     4300000: Group003
+    4300002: Set1_RockC:Group003
     9500000: //RootNode
   materials:
     importMaterials: 1
