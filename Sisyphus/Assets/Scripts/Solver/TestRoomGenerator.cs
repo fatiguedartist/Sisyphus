@@ -82,17 +82,9 @@ namespace Sisyphus
                 {
                     var exitNode = exit.Instantiate();
                     exitNode.transform.parent = transform;
-                    exitNode.transform.localPosition = pos;
+                    exitNode.transform.localPosition = new Vector3 (pos.x,pos.y-0.5f,pos.z);
                     exitNode.gameObject.AddComponent<LevelCompleteSurface>();
                     Destroy(exitNode.GetComponent<Collider>());
-
-
-                            //        var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                            //geo.transform.parent = transform;
-                            //geo.transform.localPosition = pos;
-                            //geo.transform.localScale = baseSize*0.5f;
-                            //geo.GetComponent<MeshRenderer>().material.color = Color.green;
-                            //geo.AddComponent<LevelCompleteSurface>();
                         }
 
                 if (x == 0)

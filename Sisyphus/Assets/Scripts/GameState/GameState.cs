@@ -19,7 +19,7 @@ namespace Sisyphus
 
         private GameState()
         {
-            Level = 6;
+            Level = 3;
             PlayerIsDead = false;
         }
 
