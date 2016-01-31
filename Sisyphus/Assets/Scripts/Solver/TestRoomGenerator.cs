@@ -47,8 +47,7 @@ namespace Sisyphus
 
         private void Start()
         {
-            var skybox = skyboxes.SelectRandom();
-            RenderSettings.skybox = skybox;
+            SetSkybox();
 
             InitFields(GameState.Instance.Level);
             Solver.GenerateSolutionPath(_room);
@@ -57,6 +56,22 @@ namespace Sisyphus
             transform.localScale = scale * Vector3.one;
             player.transform.position = _room.entryPoint.ToV3() * scale;
             HandleAudio();
+        }
+
+        private void SetSkybox()
+        {
+            if (GameState.Instance.Level >= 3 && GameState.Instance.Level <= 5)
+            {
+                RenderSettings.skybox = skyboxes[0];
+            }
+            else if (GameState.Instance.Level >= 6 && GameState.Instance.Level <= 7)
+            {
+                RenderSettings.skybox = skyboxes[1];
+            }
+            else if (GameState.Instance.Level >= 8)
+            {
+                RenderSettings.skybox = skyboxes[2];
+            }
         }
 
         private void HandleAudio()

@@ -319,10 +319,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.05
-  m_Pitch: 1.5
+  m_audioClip: {fileID: 8300000, guid: 561f95b73c74b8e42b6444b5545f37de, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.798
+  m_Pitch: 1.59
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -611,9 +611,9 @@ MonoBehaviour:
   generatorPrefab: {fileID: 11496794}
   scale: 4
   skyboxes:
-  - {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
-  - {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
   - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
+  - {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
+  - {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
   player: {fileID: 0}
   entry: {fileID: 11493212, guid: cde0f9d03f50e484dbb3e74bf5593165, type: 2}
   exit: {fileID: 11438826, guid: a74d6c1e0c291b64db4bad3a3b342144, type: 2}
@@ -640,7 +640,7 @@ MonoBehaviour:
   spikesFront: {fileID: 172972, guid: 3050a6525666b0e45b4bbdf96db73fad, type: 2}
   spikesBack: {fileID: 114778, guid: 53e1ee25db6420646b0ab0836d0cc4f1, type: 2}
   SuccessSound: {fileID: 8300000, guid: 561f95b73c74b8e42b6444b5545f37de, type: 3}
-  FailureSound: {fileID: 8300000, guid: 2ef786cdb12b65543b0ae5c30d1ada89, type: 3}
+  FailureSound: {fileID: 8300000, guid: 514d27b8b96ffb74a9358961cf442432, type: 3}
   localSource: {fileID: 8295702}
 --- !u!123 &12369084
 LensFlare:
