@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3347922}
   - 23: {fileID: 2357048}
   - 95: {fileID: 9518226}
+  - 65: {fileID: 6511260}
   m_Layer: 0
   m_Name: SM_Ceiling_Face_A
   m_TagString: Untagged
@@ -63,6 +64,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134394}
   m_Mesh: {fileID: 4300000, guid: 0a84b1955497aa545b5f133378a1fa57, type: 3}
+--- !u!65 &6511260
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 8.702042, z: 100}
+  m_Center: {x: 0, y: 50.178535, z: 0}
 --- !u!95 &9518226
 Animator:
   serializedVersion: 3

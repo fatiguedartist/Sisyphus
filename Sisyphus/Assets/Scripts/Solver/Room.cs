@@ -66,7 +66,7 @@ namespace Sisyphus
             room.entryPoint = entryPoint;
             room.door = door;
             room.solutionPath = new List<Int3>(solutionPath);
-            room.divergentPaths = new List<List<Int3>>(room.divergentPaths);
+            room.divergentPaths = new List<List<Int3>>(divergentPaths);
         }
 
         public Room Clone()

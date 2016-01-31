@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3362396}
   - 23: {fileID: 2335810}
   - 95: {fileID: 9550640}
+  - 65: {fileID: 6528318}
   m_Layer: 0
   m_Name: SM_Wall_Face_A
   m_TagString: Untagged
@@ -63,6 +64,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142252}
   m_Mesh: {fileID: 4300000, guid: ed98d238d18d9d64c81885d5887ed944, type: 3}
+--- !u!65 &6528318
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 142252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100, z: 8.702049}
+  m_Center: {x: 0, y: 0, z: 50.17854}
 --- !u!95 &9550640
 Animator:
   serializedVersion: 3
