@@ -4,6 +4,7 @@ using System.Collections;
 public class UVScroll : MonoBehaviour
 {
     private Material mat;
+    public string textureToOffset = "_DetailAlbedoMap";
 
 	// Use this for initialization
 	void Start ()
@@ -13,6 +14,6 @@ public class UVScroll : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    mat.SetTextureOffset("_DetailAlbedoMap", Vector2.right * Time.time * 0.1f);
+	    mat.SetTextureOffset(textureToOffset, Vector2.right * Time.time * 0.1f);
 	}
 }
