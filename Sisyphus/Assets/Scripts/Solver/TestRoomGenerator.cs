@@ -87,14 +87,64 @@ namespace Sisyphus
                     geo.AddComponent<LevelCompleteSurface>();
                 }
 
+                if (x == 0)
+                {
+                    if (side == Sides.None)
+                    {
+                        var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.left;
+                    }
+                }
+                if (x == _room.Width - 1)
+                {
+                     if (side == Sides.None)
+                    {
+                        var geo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.right;
+                    }
+                }
+
+                if (y == 0)
+                {
+                    if (side == Sides.None)
+                    {
+                        var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.down;
+                    }
+                }
+                if (y == _room.Height - 1)
+                {
+                    if (side == Sides.None)
+                    {
+                        var geo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.up;
+                    }
+                }
+
+                if (z == 0)
+                {
+                    if (side == Sides.None)
+                    {
+                        var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.back;
+                    }
+                }
+                if (z == _room.Depth - 1)
+                {
+                    if (side == Sides.None)
+                    {
+                        var geo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                        geo.transform.localPosition = pos + Vector3.forward;
+                    }
+                }
+
                 if ((side & Sides.Top) > 0)
                 {
                     var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (y < _room.Height - 1)
                     {
-                        var next = _room.roomBuffer[x, y + 1, z];
+                        var next = y < _room.Height - 1 ? _room.roomBuffer[x, y + 1, z] : side;
                         if (next != Sides.None && (side & Sides.Bottom) == 0)
                         {
                             var rearGeo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
@@ -108,9 +158,8 @@ namespace Sisyphus
                     var geo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (y > 0)
                     {
-                        var next = _room.roomBuffer[x, y - 1, z];
+                        var next = y > 0 ? _room.roomBuffer[x, y - 1, z] : side;
                         if (next != Sides.None && (side & Sides.Top) == 0)
                         {
                             var rearGeo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
@@ -124,9 +173,8 @@ namespace Sisyphus
                     var geo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (x > 0)
                     {
-                        var next = _room.roomBuffer[x - 1, y, z];
+                        var next = x > 0 ? _room.roomBuffer[x - 1, y, z] : side;
                         if (next != Sides.None && (side & Sides.Right) == 0)
                         {
                             var rearGeo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
@@ -140,9 +188,8 @@ namespace Sisyphus
                     var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (x < _room.Width - 1)
                     {
-                        var next = _room.roomBuffer[x + 1, y, z];
+                        var next = x < _room.Width - 1 ? _room.roomBuffer[x + 1, y, z] : side;
                         if (next != Sides.None && (side & Sides.Left) == 0)
                         {
                             var rearGeo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
@@ -156,9 +203,8 @@ namespace Sisyphus
                     var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (z < _room.Depth - 1)
                     {
-                        var next = _room.roomBuffer[x, y, z + 1];
+                        var next = z < _room.Depth - 1 ? _room.roomBuffer[x, y, z + 1] : side;
                         if (next != Sides.None && (side & Sides.Rear) == 0)
                         {
                             var rearGeo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
@@ -172,9 +218,8 @@ namespace Sisyphus
                    var geo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
 
-                    if (z > 0)
                     {
-                        var next = _room.roomBuffer[x, y, z - 1];
+                        var next = z > 0 ? _room.roomBuffer[x, y, z - 1] : side;
                         if (next != Sides.None && (side & Sides.Front) == 0)
                         {
                             var rearGeo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
