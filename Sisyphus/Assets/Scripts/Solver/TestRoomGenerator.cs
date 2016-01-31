@@ -115,7 +115,6 @@ namespace Sisyphus
                     {
                         var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.left;
-                        _geoWalls.Add(geo);
                     }
                 }
                 if (x == _room.Width - 1)
@@ -124,7 +123,6 @@ namespace Sisyphus
                     {
                         var geo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.right;
-                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -134,7 +132,6 @@ namespace Sisyphus
                     {
                         var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.down;
-                        _geoWalls.Add(geo);
                     }
                 }
                 if (y == _room.Height - 1)
@@ -143,7 +140,6 @@ namespace Sisyphus
                     {
                         var geo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.up;
-                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -153,7 +149,6 @@ namespace Sisyphus
                     {
                         var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.back;
-                        _geoWalls.Add(geo);
                     }
                 }
                 if (z == _room.Depth - 1)
@@ -162,7 +157,6 @@ namespace Sisyphus
                     {
                         var geo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                         geo.transform.localPosition = pos + Vector3.forward;
-                        _geoWalls.Add(geo);
                     }
                 }
 
@@ -181,7 +175,7 @@ namespace Sisyphus
                         }
                         */
                     }
-                    _geoWalls.Add(geo);
+                    //_geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Bottom) > 0)
@@ -215,7 +209,7 @@ namespace Sisyphus
                         }
                         */
                     }
-                    _geoWalls.Add(geo);
+                    //_geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Right) > 0)
@@ -233,7 +227,7 @@ namespace Sisyphus
                         }
                         */
                     }
-                    _geoWalls.Add(geo);
+                    //_geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Front) > 0)
@@ -251,7 +245,7 @@ namespace Sisyphus
                         }
                         */
                     }
-                    _geoWalls.Add(geo);
+                    //_geoWalls.Add(geo);
                 }
 
                 if ((side & Sides.Rear) > 0)
@@ -269,7 +263,7 @@ namespace Sisyphus
                         }
                         */
                     }
-                    _geoWalls.Add(geo);
+                    //_geoWalls.Add(geo);
                 }
 
                 if (side == Sides.None)
@@ -284,24 +278,28 @@ namespace Sisyphus
 
         private void GenDebree()
         {
-            string[] rockOptions = new string[] { "RockA", "RockB", "RockC" };
+            GameObject[] rockOptions = new GameObject[] {
+                Resources.Load<GameObject>("RockA"),
+                Resources.Load<GameObject>("RockB"),
+                Resources.Load<GameObject>("RockC")};
 
-            int numberOfSpawns = (_geoWalls.Count * 2);
+            int numberOfSpawns = (_geoWalls.Count * 6);
             for (int i = 0; i < numberOfSpawns; i++)
             {
                 GameObject floorPanel = _geoWalls.SelectRandom();
-                var geo = Instantiate(Resources.Load(rockOptions.SelectRandom(), typeof(GameObject)), floorPanel.transform.position, floorPanel.transform.rotation) as GameObject;
-                float randomX = Random.Range(-1.0f, 1.0f);
-                float randomZ = Random.Range(-1.0f, 1.0f);
+                var original = rockOptions.SelectRandom();
+                var geo = Instantiate(original, floorPanel.transform.position, Quaternion.identity) as GameObject;
+                float randomX = Random.Range(-0.5f, 0.5f);
+                float randomZ = Random.Range(-0.5f, 0.5f);
 
                 geo.transform.parent = transform;
                 Vector3 newPosition = new Vector3()
                 {
-                    x = floorPanel.transform.position.x + randomX,
-                    y = floorPanel.transform.position.y,
-                    z = floorPanel.transform.position.z + randomZ
+                    x = floorPanel.transform.localPosition.x + randomX,
+                    y = floorPanel.transform.localPosition.y - 0.5f,
+                    z = floorPanel.transform.localPosition.z + randomZ
                 };
-                geo.transform.position = newPosition;
+                geo.transform.localPosition = newPosition;
 
                 geo.name = "GeneratedProp";
             }
