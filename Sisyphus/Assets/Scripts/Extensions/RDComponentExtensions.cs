@@ -13,6 +13,22 @@ public static class ComponentExtensions
         return ret;
     }
 
+    public static GameObject InstantiateToParentLocal(this GameObject obj, Transform parent)
+    {
+        var ret = Object.Instantiate(obj);
+        var pos = ret.transform.localPosition;
+        var rot = ret.transform.localRotation;
+        var scale = ret.transform.localScale;
+
+        ret.transform.parent = parent;
+
+        ret.transform.localPosition = pos;
+        ret.transform.localRotation = rot;
+        ret.transform.localScale = scale;
+
+        return ret;
+    }
+
     public static T InstantiateToParentLocal<T>(this T obj, Transform parent) where T : Component
     {
         var ret = (T) Object.Instantiate(obj);
