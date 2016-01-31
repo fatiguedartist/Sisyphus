@@ -17,7 +17,7 @@ public class WorldRotation : MonoBehaviour
     {
         //Debug.Log(PlayerLocation.transform.localRotation);
 
-        if (Input.GetMouseButtonDown(1) && !transitioning)
+        if ((Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) && !transitioning)
             HandleBackRotation();
 
         Debug.DrawRay(FPSView.transform.position, FPSView.transform.forward * 50, Color.green);
