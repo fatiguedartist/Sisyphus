@@ -434,6 +434,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
   - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   player: {fileID: 0}
+  entry: {fileID: 11493212, guid: cde0f9d03f50e484dbb3e74bf5593165, type: 2}
   leftSideWalls:
   - {fileID: 112886, guid: 2f15b28fa572d4a4e8cc3c591998974e, type: 2}
   rightSideWalls:

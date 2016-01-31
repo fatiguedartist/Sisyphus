@@ -19,6 +19,8 @@ namespace Sisyphus
 
         public GameObject player;
 
+        public Entry entry;
+
         public List<GameObject> leftSideWalls; 
         public List<GameObject> rightSideWalls;
         public List<GameObject> topSideWalls;
@@ -69,12 +71,11 @@ namespace Sisyphus
                 var posIntVector = pos.ToIntVector();
                 if (posIntVector.Equals(_room.entryPoint))
                 {
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
-                    geo.transform.localPosition = pos;
-                    geo.transform.localScale = baseSize*0.5f;
-                    geo.GetComponent<MeshRenderer>().material.color = Color.red;
-                    Destroy(geo.GetComponent<Collider>());
+                    var entryNode = entry.Instantiate();
+                    entryNode.transform.parent = transform;
+                    entryNode.transform.localPosition = new Vector3 (pos.x,pos.y-.15f,pos.z);
+                    Destroy(entryNode.GetComponent<Collider>());
+
                 }
                 else if (posIntVector.Equals(_room.door))
                 {
