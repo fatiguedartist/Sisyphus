@@ -17,6 +17,7 @@ namespace Sisyphus
         public Int3[] keys;
         public Int3[] locks;
         public List<Int3> solutionPath;
+        public List<List<Int3>> divergentPaths;
         public Int3 door;
 
         private int iter = 0;
@@ -31,6 +32,7 @@ namespace Sisyphus
             roomBuffer = new Sides[width, height, depth];
             keys = new Int3[numKeyLockPairs];
             locks = new Int3[numKeyLockPairs];
+            divergentPaths = new List<List<Int3>>();
 
             DefineEntryPoint(width, height);
         }
@@ -64,6 +66,7 @@ namespace Sisyphus
             room.entryPoint = entryPoint;
             room.door = door;
             room.solutionPath = new List<Int3>(solutionPath);
+            room.divergentPaths = new List<List<Int3>>(divergentPaths);
         }
 
         public Room Clone()

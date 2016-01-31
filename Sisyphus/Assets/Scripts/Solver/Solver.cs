@@ -47,14 +47,16 @@ namespace Sisyphus
                                 .Where(d => d != Directions.None && d != Directions.NUM_VALUES)
                                 .ToArray();
 
-                        var solutionPath = new List<Int3> {currentLocation};
+                        var divergentPath = new List<Int3> {currentLocation};
                         Directions lastDirection = Directions.None;
 
                         for (var i = 0; i < minPathLength; i++)
                         {
                             currentLocation = StepAlongPath(clone, currentLocation, possibleSides, possibleDirections,
-                                solutionPath, i, minPathLength, ref lastDirection);
+                                divergentPath, i, minPathLength, ref lastDirection);
                         }
+
+                        clone.divergentPaths.Add(divergentPath);
                     }
 
                     clone.CopyInto(room);

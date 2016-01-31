@@ -14,9 +14,6 @@ namespace Sisyphus
         private Room _room;
         private Color _startColor;
         private Color _wireColor;
-        public int depth = 15;
-        public int height = 15;
-        public int width = 15;
         public float scale = 1;
         public List<Material> skyboxes;
 
@@ -57,7 +54,7 @@ namespace Sisyphus
         private void GenGeometry()
         {
             Vector3 baseSize;
-            Vector3 basePos;
+            Vector3 pos;
 
             for (var x = 0; x < _room.Width; x++)
             for (var y = 0; y < _room.Height; y++)
@@ -65,14 +62,14 @@ namespace Sisyphus
             {
                 var side = _room.roomBuffer[x, y, z];
                 baseSize = Vector3.one;
-                basePos = new Vector3(x, y, z);
+                pos = new Vector3(x, y, z);
 
-                var posIntVector = basePos.ToIntVector();
+                var posIntVector = pos.ToIntVector();
                 if (posIntVector.Equals(_room.entryPoint))
                 {
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.parent = transform;
-                    geo.transform.localPosition = basePos;
+                    geo.transform.localPosition = pos;
                     geo.transform.localScale = baseSize*0.5f;
                     geo.GetComponent<MeshRenderer>().material.color = Color.red;
                     Destroy(geo.GetComponent<Collider>());
@@ -81,7 +78,7 @@ namespace Sisyphus
                 {
                     var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
                     geo.transform.parent = transform;
-                    geo.transform.localPosition = basePos;
+                    geo.transform.localPosition = pos;
                     geo.transform.localScale = baseSize*0.5f;
                     geo.GetComponent<MeshRenderer>().material.color = Color.green;
                     geo.AddComponent<LevelCompleteSurface>();
@@ -89,69 +86,105 @@ namespace Sisyphus
 
                 if ((side & Sides.Top) > 0)
                 {
-                    var pos = basePos + Vector3.up*0.5f;
-                    var size = baseSize.ScaleBy(1, 0.1f, 1);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                    var geo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
-                }
+
+                    if (y < _room.Height - 1)
+                    {
+                        var next = _room.roomBuffer[x, y + 1, z];
+                        if (next != Sides.None && (side & Sides.Bottom) == 0)
+                        {
+                            var rearGeo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.up;
+                        }
+                    }
+                        }
 
                 if ((side & Sides.Bottom) > 0)
                 {
-                    var pos = basePos - Vector3.up*0.5f;
-                    var size = baseSize.ScaleBy(1, 0.1f, 1);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                    var geo = bottomSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
+
+                    if (y > 0)
+                    {
+                        var next = _room.roomBuffer[x, y - 1, z];
+                        if (next != Sides.None && (side & Sides.Top) == 0)
+                        {
+                            var rearGeo = topSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.down;
+                        }
+                    }
                 }
 
                 if ((side & Sides.Left) > 0)
                 {
-                    var pos = basePos + Vector3.left*0.5f;
-                    var size = baseSize.ScaleBy(0.1f, 1, 1);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                    var geo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
+
+                    if (x > 0)
+                    {
+                        var next = _room.roomBuffer[x - 1, y, z];
+                        if (next != Sides.None && (side & Sides.Right) == 0)
+                        {
+                            var rearGeo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.left;
+                        }
+                    }
                 }
 
                 if ((side & Sides.Right) > 0)
                 {
-                    var pos = basePos + Vector3.right*0.5f;
-                    var size = baseSize.ScaleBy(0.1f, 1, 1);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                    var geo = rightSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
+
+                    if (x < _room.Width - 1)
+                    {
+                        var next = _room.roomBuffer[x + 1, y, z];
+                        if (next != Sides.None && (side & Sides.Left) == 0)
+                        {
+                            var rearGeo = leftSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.right;
+                        }
+                    }
                 }
 
                 if ((side & Sides.Front) > 0)
                 {
-                    var pos = basePos + Vector3.forward*0.5f;
-                    var size = baseSize.ScaleBy(1, 1, 0.1f);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                    var geo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
+
+                    if (z < _room.Depth - 1)
+                    {
+                        var next = _room.roomBuffer[x, y, z + 1];
+                        if (next != Sides.None && (side & Sides.Rear) == 0)
+                        {
+                            var rearGeo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.forward;
+                        }
+                    }
                 }
 
                 if ((side & Sides.Rear) > 0)
                 {
-                    var pos = basePos - Vector3.forward*0.5f;
-                    var size = baseSize.ScaleBy(1, 1, 0.1f);
-                    var geo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    geo.transform.parent = transform;
+                   var geo = backSideWalls.SelectRandom().InstantiateToParentLocal(transform);
                     geo.transform.localPosition = pos;
-                    geo.transform.localScale = size;
+
+                    if (z > 0)
+                    {
+                        var next = _room.roomBuffer[x, y, z - 1];
+                        if (next != Sides.None && (side & Sides.Front) == 0)
+                        {
+                            var rearGeo = frontSideWalls.SelectRandom().InstantiateToParentLocal(transform);
+                            rearGeo.transform.localPosition = pos + Vector3.back;
+                        }
+                    }
                 }
 
                 if (side == Sides.None)
                 {
                     var geo = acidPieces.SelectRandom().Instantiate();
                     geo.transform.parent = transform;
-                    geo.transform.localPosition = basePos;
+                    geo.transform.localPosition = pos;
                     geo.transform.localScale = baseSize;
                 }
             }
@@ -172,9 +205,28 @@ namespace Sisyphus
 
                 if (itemIndex > 0)
                 {
-                    Gizmos.DrawLine(_room.solutionPath[itemIndex - 1].ToV3(), int3.ToV3());
+                    Gizmos.DrawLine(_room.solutionPath[itemIndex - 1].ToV3() * scale, int3.ToV3() * scale);
                 }
             }
+
+            Gizmos.color = Color.blue;
+
+            for (var divergence = 0; divergence < _room.divergentPaths.Count; divergence++)
+            {
+                var divergentPath = _room.divergentPaths[divergence];
+                itemIndex = -1;
+                for (int index = 0; index < divergentPath.Count; index++)
+                {
+                    var int3 = divergentPath[index];
+                    itemIndex++;
+
+                    if (itemIndex > 0)
+                    {
+                        Gizmos.DrawLine(divergentPath[itemIndex - 1].ToV3() * scale, int3.ToV3() * scale);
+                    }
+                }
+            }
+            
             /*
             Vector3 size;
             Vector3 pos;

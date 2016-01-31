@@ -428,23 +428,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatorPrefab: {fileID: 11496794}
-  depth: 8
-  height: 8
-  width: 8
   scale: 4
+  skyboxes:
+  - {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
+  - {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
+  - {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
   player: {fileID: 0}
   leftSideWalls:
-  - {fileID: 0}
+  - {fileID: 139676, guid: 7e13c736ea3e02740b6f9fe5dfe1d30f, type: 2}
   rightSideWalls:
-  - {fileID: 0}
+  - {fileID: 106680, guid: ccb9a2530b7ce3641bb0db36733ae72b, type: 2}
   topSideWalls:
-  - {fileID: 0}
+  - {fileID: 134394, guid: c847967414d4efd42a6bd8fe7bda28e2, type: 2}
   bottomSideWalls:
-  - {fileID: 0}
+  - {fileID: 189948, guid: 96c88724987b7474f8e97db7f9e15d54, type: 2}
   frontSideWalls:
-  - {fileID: 0}
+  - {fileID: 142252, guid: 13db3ef8f2dcbce4bb3790f746c3c2ac, type: 2}
   backSideWalls:
-  - {fileID: 0}
+  - {fileID: 135584, guid: f04d1264c18b2af47921280cbde6dc4e, type: 2}
   centerPieces:
   - {fileID: 0}
   acidPieces:
@@ -485,7 +486,23 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b645389c58205664fa358e8b03e84121, type: 2}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: dd29e6f9f98fd6c49b38fadaa90a91d3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: skyboxes.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 88ec9a13802800449aaf825aff3aadc7, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171254}
