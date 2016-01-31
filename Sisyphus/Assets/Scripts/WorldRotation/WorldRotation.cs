@@ -103,6 +103,7 @@ public class WorldRotation : MonoBehaviour
         }
     }
 
+    /*
     void OnGUI()
     {
         GUI.Label(new Rect(0, 0, 300, 100), "PlayerLocation.transform.localRotation: " + PlayerLocation.transform.localRotation);
@@ -111,5 +112,5 @@ public class WorldRotation : MonoBehaviour
 
         GUI.Label(new Rect(0, 150, 300, 100), "FPSView.transform.eulerAngles: " + FPSView.transform.eulerAngles);
     }
-
+    */
 }
